@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
   //   try {
   //     await axios.post(
-  //       "http://localhost:5000/api/cart/merge",
+  //       "`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/merge",
   //       { cart: localCart },
   //       { headers: { Authorization: `Bearer ${token}` } }
   //     );
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/cart/merge",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/merge`,
         { cart: localCart },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   // Fetch user cart after login
   // const fetchUserCart = async (token) => {
   //   try {
-  //     const { data } = await axios.get("http://localhost:5000/api/cart", {
+  //     const { data } = await axios.get("`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     });
   //     console.log(data);
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
   // };
   const fetchUserCart = async (token) => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/cart", {
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setLoading(true);
-      const { data } = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`, { email, password });
 
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);

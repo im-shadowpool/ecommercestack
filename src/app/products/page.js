@@ -3,7 +3,7 @@ import products from "@/product-data/products.json";
 
 
 export async function getProducts() {
-    const res = await fetch("http://localhost:5000/api/products/", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/`, {
         method: "GET",
         next: {revalidate: 3000},
     });

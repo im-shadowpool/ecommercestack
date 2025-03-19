@@ -49,7 +49,7 @@ export const WishlistProvider = ({ children }) => {
 
   const fetchWishlistFromServer = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/wishlist", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -66,7 +66,7 @@ export const WishlistProvider = ({ children }) => {
   //   // Fetch wishlist from backend API
 //   const fetchWishlistFromServer = async () => {
 //     try {
-//       const res = await fetch("http://localhost:5000/api/wishlist", { headers: {
+//       const res = await fetch("`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist", { headers: {
 //         Authorization: `Bearer ${localStorage.getItem("token")}`,
 //         "Content-Type": "application/json",
 //       }, });
@@ -112,7 +112,7 @@ export const WishlistProvider = ({ children }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/wishlist/${isWishlisted ? product._id : ""}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist/${isWishlisted ? product._id : ""}`,
         {
           method: isWishlisted ? "DELETE" : "POST",
           headers: {

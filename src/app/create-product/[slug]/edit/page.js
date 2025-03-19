@@ -15,7 +15,7 @@ export default function EditProductSizesPage({ params }) {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/products/slug/${params.slug}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/slug/${params.slug}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -34,7 +34,7 @@ export default function EditProductSizesPage({ params }) {
   const handleAddOrUpdateSize = async (sizeData) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${params.slug}/sizes`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.slug}/sizes`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

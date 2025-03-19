@@ -12,7 +12,7 @@ export default function EditSizesPage() {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products?search=${searchQuery}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?search=${searchQuery}`
       );
       if (response.ok) {
         const data = await response.json();

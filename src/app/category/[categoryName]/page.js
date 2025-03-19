@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 
 export async function generateStaticParams() {
-    const res = await fetch("http://localhost:5000/api/categories");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`);
     if(!res.ok){
         return [];
     } 
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 export default async function CategoryBySlug({params}) {
 
     const {categoryName} = params;
-    const res = await fetch(`http://localhost:5000/api/categories/slug/${categoryName}`, {next: {revalidate: 3000}} );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories/slug/${categoryName}`, {next: {revalidate: 3000}} );
 
     if(!res.ok){
         return notFound();

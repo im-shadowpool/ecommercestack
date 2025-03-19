@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 // Function to fetch all products (for generating static paths)
 async function getAllProducts() {
   try {
-    const res = await fetch('http://localhost:5000/api/products');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
     if (!res.ok) {
       throw new Error(`Failed to fetch products: ${res.statusText}`);
     }
@@ -18,7 +18,7 @@ async function getAllProducts() {
 // Function to fetch a single product by slug
 async function getSingleProduct(slug) {
   try {
-    const res = await fetch(`http://localhost:5000/api/products/slug/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/slug/${slug}`, {
       next: { revalidate: 3000 }, // Revalidate every 3000 seconds (ISR)
     });
 

@@ -43,7 +43,7 @@ export const CartProvider = ({ children }) => {
       // Logged in: Sync with backend
       try {
         const { data } = await axios.post(
-          "http://localhost:5000/api/cart/",
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/`,
           { product: item._id, productSlug: item.slug, quantity: item.quantity, selectedSize: item.selectedSize },
           { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
@@ -80,7 +80,7 @@ export const CartProvider = ({ children }) => {
     if (token) {
       // Logged in: Remove from backend cart
       try {
-        const { data } = await axios.delete("http://localhost:5000/api/cart", {
+        const { data } = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { product, size },
         });
@@ -102,7 +102,7 @@ export const CartProvider = ({ children }) => {
     if (token) {
       try {
         const { data } = await axios.put(
-          "http://localhost:5000/api/cart",
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`,
           { product, selectedSize, quantity },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -126,7 +126,7 @@ export const CartProvider = ({ children }) => {
   const clearCart = async () => {
     if (token) {
       try {
-        await axios.delete("http://localhost:5000/api/cart/clear", {
+        await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/clear`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCart([]);
