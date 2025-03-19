@@ -1,11 +1,11 @@
-import PageTitle from "@/components/my-components/page-title/PageTitle";
+import PageTitle from "@/app/components/my-components/page-title/PageTitle";
 
 export default function ContactPage() {
   return (
     <>
    <PageTitle title="Contact Us" />
     <div className="container py-6">
-      <div className="bg-white mx-auto max-w-[80%] flex flex-col md:flex-row">
+      <div className="bg-white mx-auto max-w-[80%] flex flex-col md:flex-row rounded shadow-lg">
         {/* Contact Form */}
         <div className="w-full md:w-1/2 p-6 flex flex-col justify-evenly">
           <h2 className="text-xl font-bold">Question? Just ask.</h2>

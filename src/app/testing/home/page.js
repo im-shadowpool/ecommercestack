@@ -5,9 +5,7 @@ import HomeTestimonials from "@/app/components/my-components/home/HomeTestimonia
 import SecondInfoSection from "@/app/components/my-components/home/SecondInfoSection";
 import ThirdInfoSection from "@/app/components/my-components/home/ThirdInfoSection";
 
-
-
-export default function Home() {
+export default function TestingHome(){
   return (
     <div>
       <Carousel />
@@ -17,5 +15,5 @@ export default function Home() {
       <HomeTestimonials />
       <HomeNewsletter />
     </div>
-  );
+  )
 }

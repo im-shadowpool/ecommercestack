@@ -74,7 +74,7 @@ export default function LoginPage() {
               {...register('email')}
               placeholder="Email"
               type="email"
-              className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-egreen-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-egreen-700 focus:border-transparent transition-all"
               disabled={loading}
             />
             {errors.email && (
@@ -94,7 +94,7 @@ export default function LoginPage() {
     {...register('password')}
     placeholder="Password"
     type={showPassword ? 'text' : 'password'}
-    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-egreen-500 focus:border-transparent transition-all pr-12"
+    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-egreen-700 focus:border-transparent transition-all pr-12"
     disabled={loading}
   />
   <motion.button
@@ -128,7 +128,7 @@ export default function LoginPage() {
           whileTap={{ scale: 0.98 }}
           type="submit"
           disabled={loading}
-          className="w-full bg-egreen-500 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-egreen-600 transition-colors disabled:opacity-50"
+          className="w-full bg-egreen-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-egreen-800 transition-colors disabled:opacity-50"
         >
           {loading ? (
             <>
@@ -149,7 +149,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={() => router.push('/register')}
-            className="text-egreen-500 hover:underline font-medium"
+            className="text-egreen-700 hover:underline font-medium"
           >
             Register here
           </button>

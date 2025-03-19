@@ -45,7 +45,7 @@ export default function ProductListing({ products }) {
   }, []);
 
   return (
-    <div className="container mx-auto py-4">
+    <div className="container mx-auto py-12">
       <div className="w-[77%]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-bold">Products ({products.length})</h1>

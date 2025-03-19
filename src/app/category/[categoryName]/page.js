@@ -1,4 +1,4 @@
-import ProductListing from "@/components/my-components/product-listing/ProductListing";
+import ProductListing from "@/app/components/my-components/product-listing/ProductListing";
 import { toTitleCase } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
@@ -32,7 +32,8 @@ export default async function CategoryBySlug({params}) {
     const { products } = await res.json();
 
     // console.log(categoryName);
-    const categoryEditedName = toTitleCase(categoryName);
+    
+    const categoryEditedName = toTitleCase(categoryName.replace(/-/g, " "));
 
     return(
         <>

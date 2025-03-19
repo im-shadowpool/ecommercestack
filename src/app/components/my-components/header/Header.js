@@ -11,6 +11,7 @@ import { useCart } from "@/app/context/CartContext";
 import MegaMenu from "./MegaMenu";
 import { ChevronDown } from "lucide-react";
 import UserItem from "./UserItem";
+import SearchComponent from "./SearchComponent";
 
 const menuItems = [
   { name: "Shop", content: "shop" },
@@ -95,7 +96,7 @@ export default function Header() {
 
 
         <div className="flex items-center space-x-4">
-          <IoSearchOutline className="text-white text-2xl cursor-pointer hover:text-white/70" />
+          <SearchComponent />
           <div onClick={() => setIsCartOpen(true)} className="relative">
            <PiShoppingCartSimpleLight
             

@@ -3,11 +3,11 @@ import Link from "next/link"; // Import Link from Next.js
 import ShopMegaMenu from "./ShopMegaMenu"; // Import the ShopMegaMenu component
 
 const menuContent = {
-  wholesale: ["Bulk Orders", "Wholesale Policies", "Partner With Us"],
+  wholesale: ["Wholesale Login", "Wholesale Signup"],
   about: ["About Us", "Testimonials", "Eucalyptus Oil", "Our Friends", "Stockists"],
-  media: ["Blog", "Press Releases", "Social Media"],
-  faqs: ["Shipping", "Returns", "Product Care"],
-  contact: ["Customer Support", "Find Us", "Work With Us"],
+  media: ["Blog", "Euca Video"],
+  faqs: ["Safety Data Sheets (SDS)", "The Facts", "Product Care"],
+  contact: ["Contact Us", "Customer Support"],
 };
 
 const menuVariants = {
@@ -45,8 +45,8 @@ export default function MegaMenu({ openMenu, hovering, position, setHovering }) 
             exit="exit"
             variants={menuVariants}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`bg-white shadow-lg rounded-md p-6 border relative z-10 ${
-              isShopMenu ? "max-w-fit mx-auto" : "w-auto"
+            className={`bg-white shadow-lg rounded-md p-6 border relative z-20 ${
+              isShopMenu ? "max-w-[900px] mx-auto" : "w-auto"
             }`} // Adjust width for Shop Mega Menu
           >
             {/* Conditionally render ShopMegaMenu or default menu content */}

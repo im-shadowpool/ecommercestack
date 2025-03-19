@@ -8,7 +8,7 @@ export default function ShopMegaMenu() {
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -10 }}
     transition={{ duration: 0.3, ease: "easeInOut" }}
-    className="max-w-fit max-h-[400px] overflow-y-auto flex flex-col gap-6">
+    className=" max-h-[400px] overflow-y-auto flex flex-col gap-6">
 
     <div className="flex flex-col gap-1.5 border-b-2 border-egray-200 border-dashed pb-5">
       <p className="text-egray-900 font-bold">
@@ -26,8 +26,18 @@ export default function ShopMegaMenu() {
 
       {/* Column 1 - Laundry */}
       <div>
-        <h3 className="font-bold text-gray-800">
+        <h3 className="font-bold text-egreen-800">
+          <Link href="/products" className="hover-link">
+            All Products
+          </Link>
+        </h3>
+        <h3 className="mt-2 font-bold text-gray-800">
           <Link href="#" className="hover-link">
+          Specials + Packs
+          </Link>
+        </h3>
+        <h3 className="mt-2 font-bold text-egreen-800">
+          <Link href="/category/laundry" className="hover-link">
             Laundry
           </Link>
         </h3>
@@ -67,8 +77,8 @@ export default function ShopMegaMenu() {
             </Link>
           </li>
         </ul>
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/castile-soap" className="hover-link">
             Castile Soap
           </Link>
         </h3>
@@ -77,8 +87,8 @@ export default function ShopMegaMenu() {
           <li className="pl-4">— Unscented</li>
           <li className="pl-4">— Foaming Castile</li>
         </ul>
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/essential-oils" className="hover-link">
             Essential Oils
           </Link>
         </h3>
@@ -89,8 +99,8 @@ export default function ShopMegaMenu() {
 
       {/* Column 2 - Dish Washing & House Cleaners */}
       <div>
-        <h3 className="font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="font-bold text-egreen-800">
+          <Link href="/category/dish-washing" className="hover-link">
             Dish Washing
           </Link>
         </h3>
@@ -109,8 +119,8 @@ export default function ShopMegaMenu() {
           <li className="pl-4">— Tea Tree Oil</li>
         </ul>
 
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/house-cleaners" className="hover-link">
             House Cleaners
           </Link>
         </h3>
@@ -151,8 +161,8 @@ export default function ShopMegaMenu() {
             </Link>
           </li>
         </ul>
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/outdoor-range" className="hover-link">
             NEW - Outdoor Range
           </Link>
         </h3>
@@ -165,8 +175,8 @@ export default function ShopMegaMenu() {
 
       {/* Column 3 - Pet Care & Personal Care */}
       <div>
-        <h3 className="font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="font-bold text-egreen-800">
+          <Link href="/category/pet-care" className="hover-link">
             Pet Care
           </Link>
         </h3>
@@ -188,8 +198,8 @@ export default function ShopMegaMenu() {
           </li>
         </ul>
 
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/personal-care" className="hover-link">
             Personal Care
           </Link>
         </h3>
@@ -231,8 +241,8 @@ export default function ShopMegaMenu() {
           </li>
         </ul>
 
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/industrial cleaners" className="hover-link">
             Industrial Cleaners
           </Link>
         </h3>
@@ -268,8 +278,8 @@ export default function ShopMegaMenu() {
             </Link>
           </li>
         </ul>
-        <h3 className="mt-4 font-bold text-gray-800">
-          <Link href="#" className="hover-link">
+        <h3 className="mt-4 font-bold text-egreen-800">
+          <Link href="/category/accessories-parts" className="hover-link">
             Accessories / Parts
           </Link>
         </h3>

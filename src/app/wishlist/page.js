@@ -8,11 +8,19 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { truncateText } from "@/lib/utils";
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/UserContext";
 
 const WishlistPage = () => {
+  const router = useRouter();
   const { wishlist, toggleWishlist } = useWishlist();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { user } = useAuth();
+
+
+  
 
   useEffect(() => {
     // Simulate loading delay

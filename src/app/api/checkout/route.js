@@ -22,7 +22,7 @@ export async function POST(req) {
       line_items: cart.map((item) => {
         console.log("Processing Item:", item); // Debugging log
 
-        if (!item.productTitle || !item.selectedSize.price || !item.quantity || !item.selectedSize) {
+        if (!item.product || !item.selectedSize._id || !item.quantity) {
           console.error("❌ Missing item details", item);
           return null;
         }
@@ -31,7 +31,7 @@ export async function POST(req) {
           price_data: {
             currency: "usd",
             product_data: {
-              name: `${item.productTitle} - ${item.selectedSize.size}`,
+              name: item.selectedSize.productTitle,
               images: item.selectedSize.images ? item.selectedSize.images : [], 
             },
             unit_amount: Math.round(item.selectedSize.price * 100),

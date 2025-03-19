@@ -1,4 +1,4 @@
-import PageTitle from "@/components/my-components/page-title/PageTitle";
+import PageTitle from "@/app/components/my-components/page-title/PageTitle";
 import Image from "next/image";
 import { GiAustralia } from "react-icons/gi";
 import { FaBoxesStacked } from "react-icons/fa6";

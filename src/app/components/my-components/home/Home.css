@@ -1,0 +1,35 @@
+@keyframes slowBounce {
+    0%, 100% {
+      transform: translateY(10px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .bounce-slowly {
+    animation: slowBounce 5s ease-in-out infinite;
+  }
+
+  /* Custom Pagination Styles */
+.home-testimonial-slider .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: gray;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    margin: 0 5px !important; 
+    border-radius: 50%;
+    transform: scale(1);
+  }
+  
+  .home-testimonial-slider .swiper-pagination-bullet-active {
+    background-color: #0e5932;
+    opacity: 1;
+    transform: scale(1.4); 
+    border-radius: 6px; 
+  }
+  
+  .home-testimonial-slider .swiper-pagination-bullet:hover {
+    transform: scale(1.2); 
+  }

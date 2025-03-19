@@ -21,6 +21,10 @@ body{
   background-color: #f4f9ec;
 }
 
+.margin-left-overflow{
+  margin: 0 !important;
+}
+
 .hover-link {
   position: relative;
   text-decoration: none;
