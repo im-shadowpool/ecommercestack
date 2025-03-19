@@ -2,28 +2,25 @@
 
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 
-export default function ThankYouPage() {
+// Main Thank You Page Component
+function ThankYouPage() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
   const { clearCart } = useCart();
+
   useEffect(() => {
     const fetchSession = async () => {
       if (!sessionId) return;
       const res = await fetch(`/api/checkout/session?session_id=${sessionId}`);
       const data = await res.json();
       setSession(data);
-
-
-      
-        clearCart();
-   
-
+      clearCart();
       setLoading(false);
     };
     fetchSession();
@@ -46,12 +43,21 @@ export default function ThankYouPage() {
         height={250}
       />
       <h1 className="text-2xl font-bold text-green-600">
-        Thankyou for Your Purchase! ❤
+        Thank You for Your Purchase! ❤
       </h1>
       <p className="text-gray-900 mt-4">Your payment was successful.</p>
       <p className="text-gray-700">
         A confirmation email will be sent shortly.
       </p>
     </div>
+  );
+}
+
+// Suspense boundary for the page
+export function ThankYouPageWithSuspense() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ThankYouPage />
+    </Suspense>
   );
 }
