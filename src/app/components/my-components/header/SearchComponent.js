@@ -7,15 +7,24 @@ const SearchComponent = () => {
 
   const toggleSearch = () => setIsOpen(!isOpen);
 
+  // Close the search overlay when the Escape key is pressed
   useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       document.body.style.overflow = 'hidden'; // Disable scrolling
+      window.addEventListener('keydown', handleEscape);
     } else {
       document.body.style.overflow = 'auto'; // Re-enable scrolling
     }
 
     return () => {
       document.body.style.overflow = 'auto'; // Cleanup on unmount
+      window.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen]);
 
@@ -86,24 +95,6 @@ const SearchComponent = () => {
               style={{ transformStyle: 'preserve-3d' }}
             >
               Type to explore the future...
-            </motion.div>
-
-            {/* 3D Background Grid */}
-            <motion.div
-              initial={{ opacity: 0, rotateX: 90 }}
-              animate={{ opacity: 1, rotateX: 0 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute inset-0 z-0 pointer-events-none"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <div className="grid grid-cols-12 gap-4 h-full w-full opacity-20">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="border-l border-white/10"
-                  />
-                ))}
-              </div>
             </motion.div>
           </motion.div>
         )}

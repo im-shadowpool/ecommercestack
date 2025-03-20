@@ -9,16 +9,36 @@ import { Heart, Minimize2 } from "lucide-react";
 
 export default function QuickLook({ product, onClose }) {
   const { addToCart } = useCart();
-  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const { wishlist, toggleWishlist } = useWishlist();
 
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedImage, setSelectedImage] = useState(selectedSize.images[0]);
   const [quantity, setQuantity] = useState(1);
   const [direction, setDirection] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [skuSizeCode, setSkuSizeCode] = useState(product.sizes[0].skuCode)
+  const [skuSizeCode, setSkuSizeCode] = useState(product.sizes[0].skuCode);
+  const [isWishlistAnimating, setIsWishlistAnimating] = useState(false);
 
-  const isWishlisted = wishlist.some((item) => item.slug === product.slug);
+  const isWishlisted = wishlist.some((item) => item._id === product._id);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  const handleWishlistClick = () => {
+    setIsWishlistAnimating(true);
+    toggleWishlist(product);
+    setTimeout(() => setIsWishlistAnimating(false), 400); // Animation effect
+  };
 
   useEffect(() => {
     setSelectedSize(product.sizes[0]);
@@ -36,7 +56,7 @@ export default function QuickLook({ product, onClose }) {
     setSelectedSize(size);
     setSelectedImage(size.images[0]);
     setQuantity(1);
-    setSkuSizeCode(size.skuCode)
+    setSkuSizeCode(size.skuCode);
     const newRewardPoints = Math.round(size.price);
     setRewardPoints(newRewardPoints);
     setRewardValue((newRewardPoints * 0.02).toFixed(2));
@@ -79,8 +99,11 @@ export default function QuickLook({ product, onClose }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="container relative mx-auto flex flex-col md:flex-row gap-6 items-center">
-          <div onClick={onClose} className="absolute cursor-pointer right-0 top-0 text-gray-600 hover:text-green-800 transition-links">
-            <Minimize2 size={22} className=""  />
+          <div
+            onClick={onClose}
+            className="absolute cursor-pointer -right-1 -top-1 text-gray-600 hover:text-green-800 transition-links"
+          >
+            <Minimize2 size={22} className="" />
           </div>
           {/* Product Image Wrapper */}
           <div className="w-full md:max-w-[50%] flex gap-4">
@@ -114,7 +137,7 @@ export default function QuickLook({ product, onClose }) {
           {/* Product Side details */}
           <div className="w-full md:min-w-[50%] flex flex-col gap-4">
             <div className="flex flex-col gap-4">
-              <h2 className="text-2xl font-semibold text-egray-950">
+              <h2 className="text-2xl font-semibold text-egray-950 pr-3">
                 {product.productTitle}
               </h2>
               <p className="text-egray-700">
@@ -265,16 +288,14 @@ export default function QuickLook({ product, onClose }) {
                 {/* Add to Favs */}
 
                 <motion.div
-                  className="p-2.5 w-fit h-fit rounded-full flex justify-center bg-gray-200 items-center cursor-pointer"
-                  onClick={() => {
-                    isWishlisted
-                      ? removeFromWishlist(product.slug)
-                      : addToWishlist(product);
-                  }}
+                  className={`p-2.5 w-fit h-fit rounded-full flex justify-center bg-gray-200 items-center cursor-pointer ${
+                    isWishlistAnimating ? "opacity-50" : "opacity-100"
+                  }`}
+                  onClick={handleWishlistClick}
+                  disabled={isWishlistAnimating}
                   whileTap={{ scale: 0.9 }}
                   animate={{ scale: 1.1, opacity: 1 }}
                 >
-                             
                   <motion.div
                     key="filled"
                     initial={{ scale: 0, opacity: 0 }}
@@ -283,15 +304,12 @@ export default function QuickLook({ product, onClose }) {
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                   >
-                        
                     <Heart
                       fill={isWishlisted ? "#0a8b44" : "transparent"}
                       size={18}
                       className="align-middle text-egreen-700"
                     />
-
                   </motion.div>
-               
                 </motion.div>
               </div>
             </div>

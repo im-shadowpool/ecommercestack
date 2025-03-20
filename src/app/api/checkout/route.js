@@ -7,7 +7,7 @@ export async function POST(req) {
   try {
     const { cart } = await req.json();
 
-    console.log("Received Cart:", cart); // Debugging log
+    // console.log("Received Cart:", cart); // Debugging log
 
     if (!cart || cart.length === 0) {
       console.error("❌ Cart is empty");
@@ -17,10 +17,10 @@ export async function POST(req) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/thankyou?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
+      success_url: `${process.env.NEXT_PUBLIC_PAYMENT_URL}/thankyou?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_PAYMENT_URL}/cart`,
       line_items: cart.map((item) => {
-        console.log("Processing Item:", item); // Debugging log
+        // console.log("Processing Item:", item); // Debugging log
 
         if (!item.product || !item.selectedSize._id || !item.quantity) {
           console.error("❌ Missing item details", item);

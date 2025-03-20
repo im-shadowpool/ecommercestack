@@ -48,19 +48,19 @@ export default function UserItem() {
                   </div>
                 </div>
                 <hr className="my-2" />
-                <Link href="/account" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/account" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   My Account
                 </Link>
-                <Link href="/orders" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/orders" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Orders
                 </Link>
-                <Link href="/wishlist" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/wishlist" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Wishlist
                 </Link>
-                <Link href="/cart" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/cart" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Cart
                 </Link>
-                <Link href="/settings" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/settings" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Settings
                 </Link>
 
@@ -83,14 +83,18 @@ export default function UserItem() {
 
                 {/* Support & Logout */}
                 <hr className="my-2" />
-                <Link href="/support" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/support" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Customer Support
                 </Link>
-                <Link href="/returns" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/returns" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Returns & Refunds
                 </Link>
                 <button
-                  onClick={logout}
+                
+                  onClick={() => {
+                    logout();
+                    setIsOpen(false)
+                  }}
                   className="w-full text-left py-2 text-red-600 hover:bg-gray-100 px-4"
                 >
                   Logout
@@ -99,10 +103,10 @@ export default function UserItem() {
             ) : (
               // Guest View (Before Login)
               <div className="p-4">
-                <Link href="/login" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} prefetch={true} href="/login" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Login
                 </Link>
-                <Link href="/register" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
+                <Link onClick={() => setIsOpen(false)} href="/register" className="block py-2 text-gray-700 hover:bg-gray-100 px-4">
                   Register
                 </Link>
               </div>

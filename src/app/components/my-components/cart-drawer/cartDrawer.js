@@ -10,14 +10,14 @@ export default function CartDrawer() {
   const { cart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen } =
     useCart();
 
-  console.log("CART:", cart);
+  // console.log("CART:", cart);
 
   const cartTotal = cart.reduce(
     (total, item) => total + item.selectedSize.price * item.quantity,
     0
   );
 
-  const freeShippingThreshold = 200;
+  const freeShippingThreshold = 150;
   const isEligibleForFreeShipping = cartTotal >= freeShippingThreshold;
   const progressWidth = Math.min(
     (cartTotal / freeShippingThreshold) * 100,
@@ -197,6 +197,7 @@ export default function CartDrawer() {
                   <div className="mt-4 flex w-full space-x-2">
                     <Link
                       onClick={() => setIsCartOpen(false)}
+                      prefetch={true}
                       href="/cart"
                       className="flex-1"
                     >
@@ -206,6 +207,7 @@ export default function CartDrawer() {
                     </Link>
                     <Link
                       onClick={() => setIsCartOpen(false)}
+                      prefetch={true}
                       href="/cart"
                       className="flex-1"
                     >

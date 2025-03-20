@@ -18,6 +18,9 @@ const inter = Inter({
 export const metadata = {
   title: "Euca Redesign",
   description: "Eccomerce website redesign",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -30,6 +33,7 @@ export default function RootLayout({ children }) {
             <WishlistProvider>
               <CartDrawer />
               <Toaster position="bottom-center" />
+
               <Header />
               {children}
               <Footer />

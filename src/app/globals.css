@@ -27,8 +27,6 @@ body{
 
 .hover-link {
   position: relative;
-  text-decoration: none;
-  color: inherit;
 }
 
 .hover-link::after {

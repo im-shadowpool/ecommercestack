@@ -71,11 +71,11 @@ export default function Footer() {
             <h5 className="text-xl text-egray-900 font-bold mb-4">
               Information
             </h5>
-            <ul className="space-y-2">
+            <ul className="flex flex-col gap-3">
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Safety Data Sheets
                 </a>
@@ -83,7 +83,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   FAQ
                 </a>
@@ -91,15 +91,15 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   The Facts
                 </a>
               </li>
-              <li>
+              <li>  
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Blog
                 </a>
@@ -107,7 +107,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   About us
                 </a>
@@ -115,7 +115,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Terms & Conditions
                 </a>
@@ -126,11 +126,11 @@ export default function Footer() {
           {/* User Area Section */}
           <div>
             <h5 className="text-xl font-bold text-egray-900 mb-4">User area</h5>
-            <ul className="space-y-2">
+            <ul className="flex flex-col gap-3">
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   My Account
                 </a>
@@ -138,7 +138,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   FAQ
                 </a>
@@ -146,7 +146,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/cart"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   My Cart
                 </a>
@@ -154,7 +154,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Wholesale Login
                 </a>
@@ -162,7 +162,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Wishlist
                 </a>
@@ -170,7 +170,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-egray-700 hover:text-black transition duration-300"
+                  className="text-egray-700 hover-link hover:text-black transition duration-300"
                 >
                   Checkout
                 </a>
@@ -182,7 +182,7 @@ export default function Footer() {
           <div>
               <h5 className="text-xl font-bold text-egray-900 mb-4">Contact</h5>
            
-            <ul className="space-y-2 ">
+            <ul className="flex flex-col gap-3">
               <li className="flex items-center gap-2 text-egray-700 hover:text-black transition duration-300">
                 <CiLocationOn className="text-egray-700 text-lg stroke-[0.5px]" />
                 Unit 1 / 25 Burns Rd, Altona VIC 3018
@@ -208,12 +208,12 @@ export default function Footer() {
       <div className="mt-8 text-center text-gray-900">
         © 2025 Copyright:{" "}
         <span className="font-semibold">
-          <a href="https://www.eucaonline.com.au/">Euca Online.</a>
+          <a href="https://www.eucaonline.com.au/" className="hover-link">Euca Online.</a>
         </span>{" "}
         Website designed & developed by{" "}
         <span className="font-semibold">
           {" "}
-          <a href="https://www.elephantintheboardroom.com.au/">
+          <a href="https://www.elephantintheboardroom.com.au/" className="hover-link">
             {" "}
             Elephant in the Boardroom.
           </a>

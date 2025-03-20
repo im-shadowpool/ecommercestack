@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     const localCart = JSON.parse(localStorage.getItem("cart")) || [];
     if (localCart.length === 0) return;
   
-    console.log("Merging cart:", { cart: localCart });
+    // console.log("Merging cart:", { cart: localCart });
   
     try {
       const { data } = await axios.post(
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
   
-      console.log("Merged cart response:", data.cart);
+      // console.log("Merged cart response:", data.cart);
       if (data.cart.length > 0) {
         localStorage.setItem("cart", JSON.stringify(data.cart));
       }
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
       });
   
       if (data.cart && data.cart.length > 0) {
-        console.log("Fetched user cart:", data.cart);
+        // console.log("Fetched user cart:", data.cart);
         localStorage.setItem("cart", JSON.stringify(data.cart));
       } else {
         console.warn("Fetched cart is empty, keeping local cart");

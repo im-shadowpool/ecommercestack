@@ -27,7 +27,7 @@ export default function ShopMegaMenu() {
       {/* Column 1 - Laundry */}
       <div>
         <h3 className="font-bold text-egreen-800">
-          <Link href="/products" className="hover-link">
+          <Link prefetch={true} href="/products" className="hover-link">
             All Products
           </Link>
         </h3>
@@ -37,7 +37,7 @@ export default function ShopMegaMenu() {
           </Link>
         </h3>
         <h3 className="mt-2 font-bold text-egreen-800">
-          <Link href="/category/laundry" className="hover-link">
+          <Link prefetch={true} href="/category/laundry" className="hover-link">
             Laundry
           </Link>
         </h3>

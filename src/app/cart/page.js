@@ -11,9 +11,12 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toTitleCase, truncateText } from "@/lib/utils";
+import { useAuth } from "../context/UserContext";
+import { toast } from "sonner";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity } = useCart();
+  const { user } = useAuth();
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -32,23 +35,69 @@ export default function CartPage() {
     updateQuantity(item.product, item.selectedSize._id, newQuantity);
   };
 
-  const handleCheckout = async () => {
-    setLoading(true);
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cart }),
-    });
-    console.log("CART:", cart);
+  // const handleCheckout = async () => {
+  //   setLoading(true);
+  //   const res = await fetch("/api/checkout", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ cart }),
+  //   });
+  //   // console.log("CART:", cart);
 
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url; // Redirect to Stripe Checkout
-    } else {
-      alert("Failed to initiate checkout!");
+  //   const data = await res.json();
+  //   if (data.url) {
+  //     window.location.href = data.url; // Redirect to Stripe Checkout
+  //   } else {
+  //     alert("Failed to initiate checkout!");
+  //     setLoading(false);
+  //   }
+  // };
+  const handleCheckout = async () => {
+    if (!user) {
+      return toast.custom(
+        (t) => (
+          <div className="flex items-center gap-4 shadow-lg rounded-lg px-4 py-3 border font-normal min-w-80
+            bg-gradient-to-br from-black to-egray-900 border-egray-500 text-egray-50">
+            <span className="">
+              To get started, please log in.
+            </span>
+            <button
+              onClick={() => {
+                toast.dismiss(t);
+                window.location.href = "/login";
+              }}
+              className="px-2 py-0.5 bg-egreen-800 text-white rounded-md hover:bg-egray-50 hover:text-black transition"
+            >
+              Login
+            </button>
+          </div>
+        ),
+        { duration: 4000 }
+      );
+    }
+  
+    setLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart }),
+      });
+  
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url; // Redirect to Stripe Checkout
+      } else {
+        alert("Failed to initiate checkout!");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Checkout Error:", error);
+      alert("Something went wrong. Please try again.");
       setLoading(false);
     }
   };
+  
 
   const cartTotal = cart.reduce(
     (total, item) => total + item.selectedSize.price * item.quantity,

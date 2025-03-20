@@ -13,7 +13,7 @@ export async function getProducts() {
 export default async function ProudctPage() {
 
     const productsAPI = await getProducts();
-    console.log(productsAPI);
+    // console.log(productsAPI);
 
     return <ProductListing products={productsAPI}  />;
 }

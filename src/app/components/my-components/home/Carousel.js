@@ -10,11 +10,19 @@ import "swiper/css/effect-creative";
 import "./Carousel.css";
 
 const images = [
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-1.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-2.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-3.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-4.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-5.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-6.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-7.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-8.png",
   "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-9.png",
-  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-7.png",
-  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-9.png",
-  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-7.png",
-  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-7.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-10.png",
+  "https://www.eucaonline.com.au/media/banner/2024/euca-new-banner-11.png",
+  "https://www.eucaonline.com.au/media/banner/tenpercent_adjusted_banner.png",
+  "https://www.eucaonline.com.au/media/banner/starter-kit-banner-2024.png",
 ];
 
 const names = ["Autralian made and owned", "Low Allergenic", "No Nasty Chemicals", "A better clean"];
@@ -60,7 +68,7 @@ const Carousel = () => {
               opacity: 1,
               transition: {
                 delay: 1 + 0.3 * index,
-                duration: 0.7,
+                duration: 1.2,
                 ease: [0.25, 1, 0.5, 1], // Cubic Bezier
               },
             }}

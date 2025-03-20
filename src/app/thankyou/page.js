@@ -54,7 +54,7 @@ function ThankYouPage() {
 }
 
 // Suspense boundary for the page
-export function ThankYouPageWithSuspense() {
+export default function ThankYouPageWithSuspense() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ThankYouPage />

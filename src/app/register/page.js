@@ -117,11 +117,11 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
             password: data.password
           })
         })
-        console.log({
-            fullName: `${data.firstName} ${data.lastName}`,
-            email: data.email,
-            password: data.password
-          })
+        // console.log({
+        //     fullName: `${data.firstName} ${data.lastName}`,
+        //     email: data.email,
+        //     password: data.password
+        //   })
         if (!response.ok) {
           const error = await response.json()
           throw new Error(error.message)

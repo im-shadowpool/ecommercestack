@@ -17,7 +17,7 @@ export default function ReviewCreater({ producttitle }) {
 
   const handleSubmit = () => {
     if (review.name && review.subject && review.reviewText) {
-      console.log("Review Submitted", review);
+      // console.log("Review Submitted", review);
       setReview({
         name: "",
         subject: "",
