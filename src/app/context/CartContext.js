@@ -130,6 +130,7 @@ export const CartProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCart([]);
+      localStorage.removeItem("cart");
       } catch (error) {
         console.error("Error clearing cart:", error.response?.data?.message || error.message);
       }
