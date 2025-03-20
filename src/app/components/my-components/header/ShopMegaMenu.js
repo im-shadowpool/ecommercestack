@@ -43,7 +43,7 @@ export default function ShopMegaMenu() {
         </h3>
         <ul className="mt-2 space-y-2 text-gray-600">
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/laundry-powder" className="hover-link text-egreen-800">
               Laundry Powder
             </Link>
           </li>
@@ -106,7 +106,7 @@ export default function ShopMegaMenu() {
         </h3>
         <ul className="mt-2 space-y-2 text-gray-600">
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/dish-washing-powder" className="hover-link text-egreen-800">
               Dish Washing Powder
             </Link>
           </li>
@@ -126,7 +126,7 @@ export default function ShopMegaMenu() {
         </h3>
         <ul className="mt-2 space-y-2 text-gray-600">
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/surface-spray-cleaner" className="hover-link text-egreen-800">
               Surface Spray/Cleaner
             </Link>
           </li>
@@ -182,12 +182,12 @@ export default function ShopMegaMenu() {
         </h3>
         <ul className="mt-2 space-y-2 text-gray-600">
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/pet-shampoo" className="hover-link text-egreen-800">
               Pet Shampoo
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/odour-remover" className="hover-link text-egreen-800">
               Odour Remover
             </Link>
           </li>
@@ -210,7 +210,7 @@ export default function ShopMegaMenu() {
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/hand-wash" className="hover-link text-egreen-800">
               Hand Wash
             </Link>
           </li>
@@ -248,7 +248,7 @@ export default function ShopMegaMenu() {
         </h3>
         <ul className="mt-2 space-y-2 text-gray-600">
           <li>
-            <Link href="#" className="hover-link">
+            <Link href="/category/degreasers" className="hover-link text-egreen-800">
               Degreasers
             </Link>
           </li>

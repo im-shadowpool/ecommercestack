@@ -5,6 +5,7 @@ import { useCart } from "@/app/context/CartContext";
 import QuickLook from "./QuickLook";
 import Link from "next/link";
 import { useWishlist } from "@/app/context/WishlistContext";
+import SizeSelector from "./SizeSelector";
 
 export default function ProductCard({
   product,
@@ -85,7 +86,7 @@ export default function ProductCard({
         }}
         className={
           view === "grid"
-            ? "border rounded-lg overflow-hidden flex flex-col bg-white shadow-sm"
+            ? "border rounded-lg overfllow-hidden flex flex-col bg-white shadow-sm"
             : "flex flex-col items-center sm:flex-row gap-4 p-4 border rounded-lg bg-white shadow-sm z-0"
         }
         onMouseEnter={() => setIsHovered(true)}
@@ -207,26 +208,32 @@ export default function ProductCard({
             {view === "grid" ? (
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                  <motion.select
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                    value={selectedSize.size}
-                    onChange={(e) => {
-                      const newSize = product.sizes.find(
-                        (s) => s.size === e.target.value
-                      );
-                      onSizeChange(newSize);
-                      setQuantity(1);
-                    }}
-                    className="border rounded px-2 py-1 max-w-48 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  >
-                    {product.sizes.map((sizeOption) => (
-                      <option key={sizeOption.size} value={sizeOption.size}>
-                        {sizeOption.size}
-                      </option>
-                    ))}
-                  </motion.select>
+                {/* <motion.select
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.2, ease: "easeOut" }}
+  value={selectedSize.size}
+  onChange={(e) => {
+    const newSize = product.sizes.find((s) => s.size === e.target.value);
+    onSizeChange(newSize);
+    setQuantity(1);
+  }}
+  className="border rounded-lg px-3 py-2 max-w-48 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white shadow-md transition-all"
+>
+  {product.sizes.map((sizeOption) => (
+    <motion.option
+      key={sizeOption.size}
+      value={sizeOption.size}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="py-2 px-3 hover:bg-blue-100 focus:bg-blue-200 active:bg-blue-300 cursor-pointer"
+    >
+      {sizeOption.size}
+    </motion.option>
+  ))}
+</motion.select> */}
+<SizeSelector product={product} selectedSize={selectedSize} onSizeChange={onSizeChange} setQuantity={setQuantity} />
+
                   <span className="font-bold text-egreen-700 text-lg">
                     ${selectedSize.price.toFixed(2)}
                   </span>
