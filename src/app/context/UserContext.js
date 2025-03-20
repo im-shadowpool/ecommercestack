@@ -114,15 +114,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Logout Function
-  const logout = () => {
+  
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+  
+    if (token) {
+      try {
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/logout`,
+          {}, // Empty body, since logout usually doesn't require a body
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      } catch (error) {
+        console.error("Error in logout", error.response?.data?.message || error.message);
+      }
+    }
+  
+    // Clear local storage and redirect
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("cart"); // Clear local cart
     setUser(null);
     window.location.href = "/";
-
   };
+  
 
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
