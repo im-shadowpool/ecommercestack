@@ -15,5 +15,10 @@ export default async function ProudctPage() {
     const productsAPI = await getProducts();
     // console.log(productsAPI);
 
-    return <ProductListing products={productsAPI}  />;
+
+    return(
+        <div className="container  px-8">
+             <ProductListing products={productsAPI}  />
+        </div>
+    ) 
 }

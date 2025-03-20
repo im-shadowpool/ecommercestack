@@ -8,7 +8,7 @@ import { CiYoutube } from "react-icons/ci";
 
 export default function Footer() {
   return (
-    <footer className="bg-skygreen-100 py-8">
+    <footer className="bg-skygreen-100 py-8 px-8">
       {/* Social Networks Section */}
       <div className="flex items-center align-middle justify-center gap-4 mb-8">
         <p className="text-lg font-semibold">

@@ -10,7 +10,7 @@ export default function AboutUsPage() {
   return (
     <div className="bg-white pb-10">
       <PageTitle title="About Us" />
-      <div className="container my-10 max-w-[55%] mx-auto flex flex-col gap-4">
+      <div className="container px-8 my-10 max-w-[55%] mx-auto flex flex-col gap-4">
         <h2 className="text-4xl font-semibold">The Story of Euca</h2>
         <Image
           src={

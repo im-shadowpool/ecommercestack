@@ -24,7 +24,7 @@ export default function SizeSelector({ product, selectedSize, onSizeChange, setQ
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-[6.5px] px-3 flex justify-between items-center bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-blue-300 focus:outline-none"
       >
-        <span>{truncateText(selectedSize?.size, 20) || "Select"}</span>
+        <span>{truncateText(selectedSize?.size, 19) || "Select"}</span>
         <svg className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
           <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
         </svg>

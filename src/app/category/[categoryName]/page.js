@@ -37,7 +37,7 @@ export default async function CategoryBySlug({params}) {
     return(
         <>
         
-        <div className="bg-white">
+        <div className="bg-white px-8">
             <div className="container mx-auto py-12">
             <div className="mx-auto flex flex-col gap-2">
             <h2 className="text-3xl font-semibold text-egreen-800">
@@ -54,7 +54,9 @@ export default async function CategoryBySlug({params}) {
           </div>
             </div>
         </div>
+        <div className="container  px-8">
         <ProductListing products={products} />
+        </div>
         </>
     );
 }
