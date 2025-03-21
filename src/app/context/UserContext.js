@@ -105,6 +105,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.token);
       setUser(data.user);
 
+      localStorage.setItem("maintenance-auth", "true")
+    document.cookie = "maintenance-auth=true; path=/"
+
+
       await mergeCartOnLogin(data.token); // Merge local cart
       await fetchUserCart(data.token); // Fetch updated cart
     } catch (error) {
@@ -133,6 +137,9 @@ export const AuthProvider = ({ children }) => {
     }
   
     // Clear local storage and redirect
+    localStorage.removeItem("maintenance-auth")
+    document.cookie = "maintenance-auth=; Max-Age=0; path=/"
+
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("cart"); // Clear local cart

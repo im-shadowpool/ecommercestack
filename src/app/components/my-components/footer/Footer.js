@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { CiPhone } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
@@ -5,8 +7,12 @@ import { CiMail } from "react-icons/ci";
 import { CiFacebook } from "react-icons/ci";
 import { CiInstagram } from "react-icons/ci";
 import { CiYoutube } from "react-icons/ci";
+import { useAuth } from "@/app/context/UserContext";
 
 export default function Footer() {
+  const { user } = useAuth();
+
+  if (!user) return null;
   return (
     <footer className="bg-skygreen-100 py-8 px-8">
       {/* Social Networks Section */}
@@ -96,7 +102,7 @@ export default function Footer() {
                   The Facts
                 </a>
               </li>
-              <li>  
+              <li>
                 <a
                   href="#"
                   className="text-egray-700 hover-link hover:text-black transition duration-300"
@@ -180,8 +186,8 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div>
-              <h5 className="text-xl font-bold text-egray-900 mb-4">Contact</h5>
-           
+            <h5 className="text-xl font-bold text-egray-900 mb-4">Contact</h5>
+
             <ul className="flex flex-col gap-3">
               <li className="flex items-center gap-2 text-egray-700 hover:text-black transition duration-300">
                 <CiLocationOn className="text-egray-700 text-lg stroke-[0.5px]" />
@@ -208,12 +214,17 @@ export default function Footer() {
       <div className="mt-8 text-center text-gray-900">
         © 2025 Copyright:{" "}
         <span className="font-semibold">
-          <a href="https://www.eucaonline.com.au/" className="hover-link">Euca Online.</a>
+          <a href="https://www.eucaonline.com.au/" className="hover-link">
+            Euca Online.
+          </a>
         </span>{" "}
         Website designed & developed by{" "}
         <span className="font-semibold">
           {" "}
-          <a href="https://www.elephantintheboardroom.com.au/" className="hover-link">
+          <a
+            href="https://www.elephantintheboardroom.com.au/"
+            className="hover-link"
+          >
             {" "}
             Elephant in the Boardroom.
           </a>

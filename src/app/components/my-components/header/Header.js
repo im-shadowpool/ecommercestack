@@ -12,6 +12,7 @@ import MegaMenu from "./MegaMenu";
 import { ChevronDown } from "lucide-react";
 import UserItem from "./UserItem";
 import SearchComponent from "./SearchComponent";
+import { useAuth } from '@/app/context/UserContext'
 
 const menuItems = [
   { name: "Shop", content: "shop" },
@@ -26,7 +27,10 @@ export default function Header() {
   const [openMenu, setOpenMenu] = useState(null);
   const [hovering, setHovering] = useState(false);
   const [menuPosition, setMenuPosition] = useState(0);
+  const { user } = useAuth();
   const menuRefs = useRef({});
+
+
 
   const { isCartOpen, setIsCartOpen, cart } = useCart();
 
@@ -57,7 +61,7 @@ export default function Header() {
       setMenuPosition(rect ? rect.left : 0);
     }
   };
-
+  if (!user) return null
   return (
     <header className="flex justify-between items-center px-8 py-3 bg-[#8ec298] relative">
       <div className="container flex justify-between items-center mx-auto">
