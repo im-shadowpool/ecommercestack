@@ -1,105 +1,84 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IoSearchOutline, IoCloseOutline } from 'react-icons/io5';
+import { IoSearchOutline, IoCloseOutline, IoEllipsisHorizontal } from 'react-icons/io5';
 
 const SearchComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const inputRef = useRef(null);
+  const searchRef = useRef(null);
 
-  const toggleSearch = () => setIsOpen(!isOpen);
+  const toggleSearch = () => setIsOpen((prev) => !prev);
 
-  // Close the search overlay when the Escape key is pressed
+  // Close on Escape
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  // Close on Click Outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'; // Disable scrolling
-      window.addEventListener('keydown', handleEscape);
-    } else {
-      document.body.style.overflow = 'auto'; // Re-enable scrolling
+  // Auto-focus input
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
     }
-
-    return () => {
-      document.body.style.overflow = 'auto'; // Cleanup on unmount
-      window.removeEventListener('keydown', handleEscape);
-    };
   }, [isOpen]);
 
+
+
   return (
-    <>
-      {/* Search Icon */}
+    <div className="relative inline-block text-left z-50" ref={searchRef}>
+      {/* Toggle Icon */}
       <motion.div
         whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.95 }}
         onClick={toggleSearch}
         className="cursor-pointer"
       >
-        <IoSearchOutline className="text-white text-2xl hover:text-white/70 transition-all duration-200" />
+        {isOpen ? (
+          <motion.div>
+            <IoEllipsisHorizontal className="text-white text-2xl hover:text-gray-200 transition-colors duration-300" />
+          </motion.div>
+        ) : (
+          <IoSearchOutline className="text-white text-2xl hover:text-gray-200 transition-colors duration-300" />
+        )}
       </motion.div>
 
-      {/* 3D Rotating Search Overlay */}
+      {/* Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, rotateY: 90 }}
-            animate={{ opacity: 1, rotateY: 0 }}
-            exit={{ opacity: 0, rotateY: -90 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-            className="fixed inset-0 bg-black/90 margin-left-overflow backdrop-blur-lg z-50 flex flex-col items-center justify-center overflow-hidden"
-            style={{ perspective: 1000 }}
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="absolute right-0 mt-3 w-72 bg-white backdrop-blur border border-gray-200 rounded-lg shadow-lg p-4"
           >
-            {/* Close Button */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
-              className="absolute top-5 right-5 cursor-pointer"
-              onClick={toggleSearch}
-            >
-              <IoCloseOutline className="text-white text-4xl hover:text-white/70 transition-all duration-200" />
-            </motion.div>
-
-            {/* 3D Search Input */}
-            <motion.div
-              initial={{ y: -30, opacity: 0, rotateX: 45 }}
-              animate={{ y: 0, opacity: 1, rotateX: 0 }}
-              exit={{ y: -30, opacity: 0, rotateX: -45 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
-              className="w-full max-w-2xl px-6 relative"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <input
-                type="text"
-                placeholder="Search..."
-                autoFocus
-                className="w-full p-4 text-white bg-transparent border-b-2 border-white/30 focus:border-white outline-none text-3xl text-center tracking-wide placeholder-white/50"
-              />
-              {/* 3D Underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.4, duration: 0.5, ease: 'easeOut' }}
-                className="absolute bottom-0 left-0 w-full h-0.5 bg-white origin-left"
-              />
-            </motion.div>
-
-            {/* Floating 3D Text */}
-            <motion.div
-              initial={{ y: 50, opacity: 0, rotateX: -30 }}
-              animate={{ y: 0, opacity: 1, rotateX: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="mt-8 text-white/50 text-lg text-center"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              Type to explore the future...
-            </motion.div>
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="Search..."
+              className="w-full bg-transparent border-b border-gray-300 focus:border-gray-800 outline-none text-gray-800 px-2 py-2 placeholder-gray-400 transition-colors duration-300"
+            />
+            <p className="text-sm text-gray-500 mt-2 text-center">
+              Type and hit Enter...
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 

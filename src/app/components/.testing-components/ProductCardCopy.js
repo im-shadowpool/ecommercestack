@@ -2,13 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, Link as LinkIcon, Heart } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
-import QuickLook from "./QuickLook";
+import QuickLook from "../my-components/product-listing/QuickLook";
 import Link from "next/link";
 import { useWishlist } from "@/app/context/WishlistContext";
-import SizeSelector from "./SizeSelector";
-import { truncateText } from "@/lib/utils";
+import SizeSelector from "../my-components/product-listing/SizeSelector";
 
-export default function ProductCard({
+export default function ProductCardCopy({
   product,
   view,
   selectedSize,
@@ -54,6 +53,10 @@ export default function ProductCard({
     isHovered && hasMultipleImages
       ? selectedSize.images[1]
       : selectedSize.images[0];
+
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,39 +117,129 @@ export default function ProductCard({
             </AnimatePresence>
           </Link>
 
-    {view === "grid" && (
-            <div className="w-[270px] min-h-full mx-auto flex flex-col items-center justify-center">
+          {view === "grid" && (
+            <motion.div
+              className="absolute inset-0 flex justify-center items-end gap-4 pb-4"
+              initial="hidden"
+              animate={isHovered ? "visible" : "hidden"}
+              variants={containerVariants}
+            >
               <motion.div
-                className="relative"
-                initial={{ rotateY: 180 }} // Start with the back face visible (hidden)
-                animate={isHovered ? { rotateY: 0 } : { rotateY: 180 }} // Flip to front face on hover
-                transition={{ duration: 0.5 }}
-                style={{ transformStyle: "preserve-3d" }}
+                variants={itemVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleWishlistClick}
+                disabled={isWishlistAnimating} 
+                className={`hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group ${isWishlistAnimating ? "opacity-50" : "opacity-100"}`}
               >
+                <Heart
+                  fill={(isWishlisted ? "#fff" : "transparent")}
+                  size={20}
+                  className="stroke-2 text-white transition-links"
+                />
+              </motion.div>
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowQuickLook(true)}
+                className="hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group"
+              >
+                <Eye
+                  size={20}
+                  className="stroke-2 text-white transition-links"
+                />
+              </motion.div>
+              <Link href={`/products/${product.slug}`}>
                 <motion.div
-                  className="flex flex-col gap-3 bg-egreen-50 p-4 rounded-lg"
-                  style={{ backfaceVisibility: "hidden" }}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group"
                 >
-                  <div className="flex flex-col gap-3">
-                    <Link href={`/products/${product.slug}`}>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="text-egray-700 hover:text-egreen-700 transition-links"
-                    >
-                      {
-                        selectedSize.shortDesc ? truncateText(selectedSize.shortDesc, 50) : truncateText(product.shortDesc, 50)
-                      }
-                      
-                    </motion.p></Link>
-                    <div className="flex gap-3 items-center justify-between">
-                      <SizeSelector
-                        product={product}
-                        selectedSize={selectedSize}
-                        onSizeChange={onSizeChange}
-                        setQuantity={setQuantity}
-                      />
-                                        <motion.div
+                  <LinkIcon
+                    size={20}
+                    className="stroke-2 text-white transition-links"
+                  />
+                </motion.div>
+              </Link>
+            </motion.div>
+          )}
+        </motion.div>
+
+        {/* Content Container */}
+        <motion.div
+          layout="position"
+          className={
+            view === "grid"
+              ? "p-4 flex flex-col flex-auto justify-between"
+              : "p-4 flex flex-col justify-between flex-grow"
+          }
+        >
+          <Link href={`/products/${product.slug}`}>
+            <motion.h2
+              layout="position"
+              className={`
+            ${
+              view === "grid"
+                ? "text-lg font-bold mb-2 transition-links"
+                : "text-xl font-bold mb-3 transition-links"
+            }
+            ${isHovered ? "text-egreen-800" : ""}
+          `}
+              title={product.productTitle}
+            >
+              {view === "grid"
+                ? truncateText(product.productTitle, 50)
+                : product.productTitle}
+            </motion.h2>
+          </Link>
+          {view === "list" && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-gray-600 mb-4"
+            >
+              {product.shortDesc}
+            </motion.p>
+          )}
+
+          <motion.div layout="position">
+            {view === "grid" ? (
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                {/* <motion.select
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.2, ease: "easeOut" }}
+  value={selectedSize.size}
+  onChange={(e) => {
+    const newSize = product.sizes.find((s) => s.size === e.target.value);
+    onSizeChange(newSize);
+    setQuantity(1);
+  }}
+  className="border rounded-lg px-3 py-2 max-w-48 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white shadow-md transition-all"
+>
+  {product.sizes.map((sizeOption) => (
+    <motion.option
+      key={sizeOption.size}
+      value={sizeOption.size}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="py-2 px-3 hover:bg-blue-100 focus:bg-blue-200 active:bg-blue-300 cursor-pointer"
+    >
+      {sizeOption.size}
+    </motion.option>
+  ))}
+</motion.select> */}
+<SizeSelector product={product} selectedSize={selectedSize} onSizeChange={onSizeChange} setQuantity={setQuantity} />
+
+                  <span className="font-bold text-egreen-700 text-lg">
+                    ${selectedSize.price.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex w-full items-center gap-4">
+                  <motion.div
                     whileHover={{ scale: 1.06 }}
                     // whileTap={{ scale: 1 }}
                     className="flex bg-gray-200 items-center justify-between gap-2 rounded-full px-3"
@@ -182,148 +275,46 @@ export default function ProductCard({
                       +
                     </button>
                   </motion.div>
-                    </div>
-                    <div className="flex w-full items-center gap-4">
-                      <motion.button
-                        onClick={handleAddToCart}
-                        disabled={loading}
-                        whileHover={{ scale: 1.009 }}
-                        whileTap={{ scale: 0.99 }}
-                        // className="bg-egreen-800 text-white px-8 py-2 rounded-lg hover:bg-egreen-700 transition-all flex-grow"
-                        className={`text-white w-full px-4 py-2 rounded-full transition-all flex-grow ${
-                          loading
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-egreen-800 hover:bg-egreen-700"
-                        }`}
-                      >
-                        {loading ? (
-                          <div className="flex items-center justify-center">
-                            <svg
-                              className="animate-spin h-5 w-5 mr-2 text-white"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8v8H4z"
-                              ></path>
-                            </svg>
-                            Adding...
-                          </div>
-                        ) : (
-                          "Add to Cart"
-                        )}
-                      </motion.button>
-                    </div>
-                  </div>
-                  <motion.div
-                    className="flex justify-center items-end gap-4"
-                    initial="hidden"
-                    animate={isHovered ? "visible" : "hidden"}
-                    variants={containerVariants}
+                  <motion.button
+                    onClick={handleAddToCart}
+                    disabled={loading}
+                    whileHover={{ scale: 1.009 }}
+                    whileTap={{ scale: 0.99 }}
+                    // className="bg-egreen-800 text-white px-8 py-2 rounded-lg hover:bg-egreen-700 transition-all flex-grow"
+                    className={`text-white w-full px-4 py-2 rounded-full transition-all flex-grow ${
+                      loading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-egreen-800 hover:bg-egreen-700"
+                    }`}
                   >
-                    <motion.div
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleWishlistClick}
-                      disabled={isWishlistAnimating}
-                      className={`hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group ${
-                        isWishlistAnimating ? "opacity-50" : "opacity-100"
-                      }`}
-                    >
-                      <Heart
-                        fill={isWishlisted ? "#fff" : "transparent"}
-                        size={20}
-                        className="stroke-2 text-white transition-links"
-                      />
-                    </motion.div>
-                    <motion.div
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setShowQuickLook(true)}
-                      className="hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group"
-                    >
-                      <Eye
-                        size={20}
-                        className="stroke-2 text-white transition-links"
-                      />
-                    </motion.div>
-                    <Link href={`/products/${product.slug}`}>
-                      <motion.div
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="hover:bg-egreen-900 bg-black  cursor-pointer rounded-full p-2 transition-colors group"
-                      >
-                        <LinkIcon
-                          size={20}
-                          className="stroke-2 text-white transition-links"
-                        />
-                      </motion.div>
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Content Container */}
-        <motion.div
-          layout="position"
-          className={
-            view === "grid"
-              ? "p-4 flex flex-col flex-auto justify-between"
-              : "p-4 flex flex-col justify-between flex-grow"
-          }
-        >
-          <Link href={`/products/${product.slug}`}>
-            <motion.h2
-              layout="position"
-              className={`
-            ${
-              view === "grid"
-                ? "text-lg font-bold mb-2 transition-links"
-                : "text-xl font-bold mb-3 transition-links"
-            }
-            ${isHovered ? "text-egreen-800" : ""}
-          `}
-              title={product.productTitle}
-            >
-              {view === "grid"
-                ? truncateText(product.productTitle, 45)
-                : product.productTitle}
-            </motion.h2>
-          </Link>
-          {view === "list" && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-gray-600 mb-4"
-            >
-              {product.shortDesc}
-            </motion.p>
-          )}
-
-          <motion.div layout="position">
-            {view === "grid" ? (
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-egreen-700 text-lg">
-                    ${selectedSize.price.toFixed(2)}
-                  </span>
+                    {loading ? (
+                      <div className="flex items-center justify-center">
+                        <svg
+                          className="animate-spin h-5 w-5 mr-2 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v8H4z"
+                          ></path>
+                        </svg>
+                        Adding...
+                      </div>
+                    ) : (
+                      "Add to Cart"
+                    )}
+                  </motion.button>
                 </div>
               </div>
             ) : (
