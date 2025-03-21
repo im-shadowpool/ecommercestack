@@ -118,7 +118,7 @@ export default function ProductCard({
             <div className="w-[270px] min-h-full mx-auto flex flex-col items-center justify-center">
               <motion.div
                 className="relative"
-                initial={{ rotateY: 180 }} // Start with the back face visible (hidden)
+                initial={{ rotateY: 180, backfaceVisibility: "hidden" }} // Start with the back face visible (hidden)
                 animate={isHovered ? { rotateY: 0 } : { rotateY: 180 }} // Flip to front face on hover
                 transition={{ duration: 0.5 }}
                 style={{ transformStyle: "preserve-3d" }}
