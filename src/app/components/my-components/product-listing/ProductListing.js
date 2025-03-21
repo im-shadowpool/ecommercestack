@@ -76,7 +76,7 @@ export default function ProductListing({ products }) {
             className={
               view === "grid"
                 ? "grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                : "space-y-6"
+                : "flex flex-col gap-6"
             }
           >
             {products.map((product) => (

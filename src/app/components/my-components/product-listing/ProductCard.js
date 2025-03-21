@@ -31,7 +31,7 @@ export default function ProductCard({
     toggleWishlist(product);
     setTimeout(() => setIsWishlistAnimating(false), 400); // Animation effect
   };
-
+  
 
   const handleAddToCart = async () => {
     setLoading(true); // Start loading

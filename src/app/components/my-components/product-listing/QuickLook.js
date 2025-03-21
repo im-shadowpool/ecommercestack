@@ -83,7 +83,7 @@ export default function QuickLook({ product, onClose }) {
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10 quicklookpopup"
+      className="fixed inset-0 m-0 flex items-center justify-center bg-black bg-opacity-50 z-10 quicklookpopup"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

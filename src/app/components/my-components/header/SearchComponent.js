@@ -39,7 +39,7 @@ const SearchComponent = () => {
 
 
   return (
-    <div className="relative inline-block text-left z-50" ref={searchRef}>
+    <div className="relative inline-block text-left" ref={searchRef}>
       {/* Toggle Icon */}
       <motion.div
         whileHover={{ scale: 1.1 }}
