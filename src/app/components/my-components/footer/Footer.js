@@ -14,7 +14,7 @@ export default function Footer() {
 
   if (!user) return null;
   return (
-    <footer className="bg-skygreen-100 py-8 px-8">
+    <footer className="bg-skygreen-100 py-8 px-12">
       {/* Social Networks Section */}
       <div className="flex items-center align-middle justify-center gap-4 mb-8">
         <p className="text-lg font-semibold">

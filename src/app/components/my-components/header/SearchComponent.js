@@ -25,8 +25,8 @@ const SearchComponent = () => {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
+    return () => document.removeEventListener('pointerdown', handleClickOutside);
   }, []);
 
   // Auto-focus input
@@ -64,7 +64,7 @@ const SearchComponent = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="absolute right-0 mt-3 w-72 bg-white backdrop-blur border border-gray-200 rounded-lg shadow-lg p-4"
+            className="absolute right-0 mt-3 w-72 bg-white backdrop-blur border border-gray-200 rounded-lg shadow-lg p-4 z-10"
           >
             <input
               ref={inputRef}

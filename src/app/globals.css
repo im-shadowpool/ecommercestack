@@ -9,6 +9,10 @@
   .a-body-links {
     @apply text-egreen-800 border-b border-transparent hover:border-egreen-700 hover:text-egreen-700 transition-all duration-300 ease-in-out;
   }
+
+  .padding-container {
+    @apply px-12;
+  }
 }
 
 html {

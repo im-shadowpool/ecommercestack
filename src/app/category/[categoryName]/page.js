@@ -54,7 +54,7 @@ export default async function CategoryBySlug({params}) {
           </div>
             </div>
         </div>
-        <div className="container  px-8">
+        <div className="container px-12">
         <ProductListing products={products} />
         </div>
         </>

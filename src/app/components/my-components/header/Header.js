@@ -63,7 +63,7 @@ export default function Header() {
   };
   if (!user) return null
   return (
-    <header className="flex justify-between items-center px-8 py-3 bg-[#8ec298] relative">
+    <header className="flex justify-between items-center px-12 py-3 bg-[#8ec298] relative">
       <div className="container flex justify-between items-center mx-auto">
         <div className="flex items-center space-x-2">
           <Link href="/">

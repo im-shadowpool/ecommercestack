@@ -89,7 +89,7 @@ export default function ProductDetails({ productAPI }) {
     <div className="">
       {/* Page Title */}
       <section>
-        <div className="bg-white mx-auto px-8 pt-16 pb-8">
+        <div className="bg-white mx-auto px-12 pt-16 pb-8">
           <div className="container mx-auto flex flex-col gap-2">
             <h2 className="text-3xl font-semibold text-egreen-800">
               Products: {productAPI.productTitle}
@@ -107,7 +107,7 @@ export default function ProductDetails({ productAPI }) {
       </section>
 
       {/* Product Wrapper */}
-      <div className="py-4 px-8 mt-8 container mx-auto flex flex-col md:flex-row gap-8 items-center">
+      <div className="py-4 px-12 mt-8 container mx-auto flex flex-col md:flex-row gap-8 items-center">
         {/* Product Image Wrapper */}
         <div className="w-full md:max-w-[50%] flex gap-4">
           <div className="flex flex-col gap-2 mt-4 justify-center items-center">
@@ -317,7 +317,7 @@ export default function ProductDetails({ productAPI }) {
       </div>
 
       {/* TABS */}
-      <div className="container mx-auto py-8 px-8 mb-28">
+      <div className="container mx-auto py-8 px-12 mb-28">
         <div className="border-b flex mb-4">
           {["Details", "More Information", "Reviews"].map((tab) => (
             <button

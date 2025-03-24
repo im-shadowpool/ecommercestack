@@ -12,15 +12,26 @@ export default function UserItem() {
   const { user, logout } = useAuth(); // Example authentication context
   const menuRef = useRef(null);
 
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     console.log("Clicked on:", event.target);
+  //     if (menuRef.current && !menuRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   }
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
+  function handleClickOutside(event) {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }
+
+  document.addEventListener("pointerdown", handleClickOutside);
+  return () => document.removeEventListener("pointerdown", handleClickOutside);
+}, []);
 
   return (
     <div className="relative" ref={menuRef}>

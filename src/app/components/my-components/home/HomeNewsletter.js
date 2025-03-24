@@ -1,7 +1,10 @@
 export default function HomeNewsletter() {
     return (
         <div className="bg-[#faeddc] py-10 border-t border-black/10">
-            <div className="container flex flex-col md:flex-row justify-between items-center">
+            <div className="container px-12 ">
+
+           
+            <div className=" flex flex-col md:flex-row justify-between items-center">
                 <div className="mb-6 md:mb-0">
                     <h4 className="text-2xl font-bold">Our Newsletter</h4>
                     <p className="text-gray-700">Never miss an update again!</p>
@@ -16,6 +19,7 @@ export default function HomeNewsletter() {
                         SUBSCRIBE NOW
                     </button>
                 </div>
+            </div>
             </div>
         </div>
     );

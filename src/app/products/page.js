@@ -17,7 +17,7 @@ export default async function ProudctPage() {
 
 
     return(
-        <div className="container  px-8">
+        <div className="container px-12">
              <ProductListing products={productsAPI}  />
         </div>
     ) 
