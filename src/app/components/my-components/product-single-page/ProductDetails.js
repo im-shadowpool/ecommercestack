@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
-import InnerImageZoom from "react-inner-image-zoom";
+
 import { motion, AnimatePresence } from "framer-motion";
 import productsdesc from "@/product-data/productsdesc.json";
 import ReviewCreater from "./ReviewCreater";
@@ -11,12 +11,13 @@ import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart } from "lucide-react";
+import ProductImage from "./productImage";
 
 export default function ProductDetails({ productAPI }) {
   const { addToCart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
   const [selectedSize, setSelectedSize] = useState(productAPI.sizes[0]);
-  const [selectedImage, setSelectedImage] = useState(selectedSize.images[0]);
+  // const [selectedImage, setSelectedImage] = useState(selectedSize.images[0]);
   const [quantity, setQuantity] = useState(1);
   const [direction, setDirection] = useState(1);
   const [activeTab, setActiveTab] = useState("Details");
@@ -53,7 +54,7 @@ export default function ProductDetails({ productAPI }) {
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
-    setSelectedImage(size.images[0]);
+    // setSelectedImage(size.images[0]);
     setQuantity(1);
     setSkuSizeCode(size.skuCode)
     setSelectedSizeTitle(size.productTitle)
@@ -89,8 +90,8 @@ export default function ProductDetails({ productAPI }) {
     <div className="">
       {/* Page Title */}
       <section>
-        <div className="bg-white mx-auto px-12 pt-16 pb-8">
-          <div className="container mx-auto flex flex-col gap-2">
+        <div className="bg-white py-12">
+          <div className="padding-container flex flex-col gap-2">
             <h2 className="text-3xl font-semibold text-egreen-800">
               Products: {productAPI.productTitle}
             </h2>
@@ -107,36 +108,13 @@ export default function ProductDetails({ productAPI }) {
       </section>
 
       {/* Product Wrapper */}
-      <div className="py-4 px-12 mt-8 container mx-auto flex flex-col md:flex-row gap-8 items-center">
+      <div className="py-4 mt-8 padding-container flex flex-col md:flex-row gap-8 items-center">
         {/* Product Image Wrapper */}
-        <div className="w-full md:max-w-[50%] flex gap-4">
-          <div className="flex flex-col gap-2 mt-4 justify-center items-center">
-            {selectedSize.images.map((archiveImg, index) => (
-              <img
-                key={index}
-                src={archiveImg}
-                alt="thumbnail"
-                className={`w-20 h-16 object-cover cursor-pointer rounded-lg border transition-all ${
-                  selectedImage === archiveImg
-                    ? "border-green-500"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setSelectedImage(archiveImg)}
-              />
-            ))}
-          </div>
-          <div className="w-full h-[400px] md:h-[500px] relative overflow-hidden bg-white">
-            <InnerImageZoom
-              src={selectedImage}
-              zoomSrc={selectedImage}
-              zoomScale={1.1}
-              zoomType="hover"
-              hideHint={true}
-              className="object-cover"
-              
-            />
-          </div>
-        </div>
+        <ProductImage 
+          
+          selectedSize={selectedSize} 
+
+        />
 
         {/* Product Side details */}
         <div className="w-full md:min-w-[50%] flex flex-col gap-4">
@@ -317,7 +295,7 @@ export default function ProductDetails({ productAPI }) {
       </div>
 
       {/* TABS */}
-      <div className="container mx-auto py-8 px-12 mb-28">
+      <div className="padding-container py-8 mb-28">
         <div className="border-b flex mb-4">
           {["Details", "More Information", "Reviews"].map((tab) => (
             <button

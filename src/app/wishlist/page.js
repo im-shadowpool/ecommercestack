@@ -28,7 +28,7 @@ const WishlistPage = () => {
   }, []);
 
   return (
-    <div className="container mx-auto">
+    <div className="padding-container mx-auto">
       <div className="w-[90%] mx-auto">
         {/* Page Title */}
         <section className="py-10 flex justify-center">

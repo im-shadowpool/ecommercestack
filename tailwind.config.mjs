@@ -7,11 +7,30 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // screens: {
+    //   'xs': '480px',
+    //   'sm': '640px',
+    //   'md': '768px',
+    //   'lg': '1024px',
+    //   'xl': '1280px',
+    //   '2xl': '1536px',
+    // },
     extend: {
-      container: {
-        center: true, // Centers the container automatically
+      // container: {
+      //   center: true, // Centers the container automatically
         
-      },
+      // },
+      // container: {
+      //   center: true, // Centers the container horizontally by default
+      //   padding: '2rem', // Adds padding (optional)
+      //   screens: {
+      //     sm: '100%', // Small screens take full width
+      //     md: '100%', // Medium screens take full width
+      //     lg: '100%', // Large screens take full width
+      //     xl: '1280px', // Limit to 1280px on extra large screens
+      //     '2xl': '1280px', // Keep it the same for 2xl screens
+      //   },
+      // },
       colors: {
         egreen: {
           50: "#effef5",

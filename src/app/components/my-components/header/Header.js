@@ -63,8 +63,8 @@ export default function Header() {
   };
   if (!user) return null
   return (
-    <header className="flex justify-between items-center px-12 py-3 bg-[#8ec298] relative">
-      <div className="container flex justify-between items-center mx-auto">
+    <header className="flex justify-between items-center py-3 bg-[#8ec298] relative">
+      <div className="padding-container flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Link href="/">
             <Image src="/header-assets/logo.png" alt="Logo" width={95} height={95} />

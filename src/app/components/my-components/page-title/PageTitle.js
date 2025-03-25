@@ -9,7 +9,7 @@ const PageTitle = ({ title }) => {
 
   return (
     <div className="w-full bg-skygreen-100 py-12 px-8 rounded-b-3xl">
-      <div className="container">
+      <div className="padding-container">
         <nav className="text-sm text-gray-600 mb-2">
           <ol className="flex space-x-2">
             <li>

@@ -11,9 +11,31 @@
   }
 
   .padding-container {
-    @apply px-12;
+    @apply container mx-auto px-4 lg:px-8 max-w-screen-xl;
   }
 }
+
+.magnifier {
+  display: none;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* For a circular magnifier effect instead */
+/*
+.magnifier {
+  display: none;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  position: absolute;
+}
+*/
 
 html {
   scroll-behavior: smooth;

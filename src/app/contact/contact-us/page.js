@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <>
    <PageTitle title="Contact Us" />
-    <div className="container py-6">
+    <div className="padding-container py-6">
       <div className="bg-white mx-auto max-w-[80%] flex flex-col md:flex-row rounded shadow-lg">
         {/* Contact Form */}
         <div className="w-full md:w-1/2 p-6 flex flex-col justify-evenly">

@@ -14,9 +14,9 @@ export default function Footer() {
 
   if (!user) return null;
   return (
-    <footer className="bg-skygreen-100 py-8 px-12">
+    <footer className="bg-skygreen-100 py-8">
       {/* Social Networks Section */}
-      <div className="flex items-center align-middle justify-center gap-4 mb-8">
+      <div className="padding-container flex items-center align-middle justify-center gap-4 mb-8">
         <p className="text-lg font-semibold">
           Get connected with us on social networks:
         </p>
@@ -47,7 +47,7 @@ export default function Footer() {
 
       {/* Footer Content Grid */}
 
-      <div className="container mx-auto flex gap-36">
+      <div className="padding-container flex gap-36">
         {/* About Section (35% width) */}
         <div className="w-[35%] flex flex-col gap-4">
           {/* <h5 className="text-xl text-egray-900 font-bold ">TW Elements</h5> */}
@@ -211,7 +211,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="mt-8 text-center text-gray-900">
+      <div className="padding-container mt-8 text-center text-gray-900">
         © 2025 Copyright:{" "}
         <span className="font-semibold">
           <a href="https://www.eucaonline.com.au/" className="hover-link">

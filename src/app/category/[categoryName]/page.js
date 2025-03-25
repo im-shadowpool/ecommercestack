@@ -38,7 +38,7 @@ export default async function CategoryBySlug({params}) {
         <>
         
         <div className="bg-white px-8">
-            <div className="container mx-auto py-12">
+            <div className="padding-container mx-auto py-12">
             <div className="mx-auto flex flex-col gap-2">
             <h2 className="text-3xl font-semibold text-egreen-800">
               Category: {categoryEditedName}
@@ -54,7 +54,7 @@ export default async function CategoryBySlug({params}) {
           </div>
             </div>
         </div>
-        <div className="container px-12">
+        <div className="padding-container">
         <ProductListing products={products} />
         </div>
         </>
