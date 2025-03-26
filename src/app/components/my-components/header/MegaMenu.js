@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link"; // Import Link from Next.js
-import ShopMegaMenu from "./ShopMegaMenu"; // Import the ShopMegaMenu component
+import Link from "next/link";
+import ShopMegaMenu from "./ShopMegaMenu";
+import { useEffect, useState, useRef } from "react";
 
 const menuContent = {
   wholesale: ["Wholesale Login", "Wholesale Signup"],
@@ -23,21 +24,52 @@ const itemVariants = {
 };
 
 export default function MegaMenu({ openMenu, hovering, position, setHovering }) {
-  // Calculate the center position for the Shop Mega Menu
-  const isShopMenu = openMenu === "shop";
+  const [isClient, setIsClient] = useState(false);
+  const [delayedOpenMenu, setDelayedOpenMenu] = useState(null);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Keep menu open when hovering over menu or trigger
+  useEffect(() => {
+    if (openMenu) {
+      setDelayedOpenMenu(openMenu);
+    } else {
+      const timer = setTimeout(() => {
+        setDelayedOpenMenu(null);
+      }, 300); // Slightly longer delay before closing
+      return () => clearTimeout(timer);
+    }
+  }, [openMenu]);
+
+  if (!isClient) return null;
+
+  const isShopMenu = delayedOpenMenu === "shop";
   const shopMenuPosition = isShopMenu
-    ? `calc(50% - ${window.innerWidth > 768 ? "300px" : "150px"})` // Adjust based on screen width
+    ? `calc(50% - ${window.innerWidth > 768 ? "300px" : "150px"})`
     : position;
 
   return (
     <div
+      ref={menuRef}
       className="absolute top-[100%] mt-2"
       onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      style={{ left: isShopMenu ? shopMenuPosition : position, minWidth: "300px" }}
+      onMouseLeave={(e) => {
+        // Check if we're leaving to go to a non-menu element
+        if (!e.relatedTarget || !menuRef.current?.contains(e.relatedTarget)) {
+          setHovering(false);
+        }
+      }}
+      style={{ 
+        left: isShopMenu ? shopMenuPosition : position, 
+        minWidth: "300px",
+        pointerEvents: !hovering && !delayedOpenMenu ? "none" : "auto"
+      }}
     >
-      <AnimatePresence mode="wait">
-        {openMenu && (
+      <AnimatePresence>
+        {(hovering || delayedOpenMenu) && (
           <motion.div
             layoutId="megaMenu"
             initial="hidden"
@@ -47,14 +79,13 @@ export default function MegaMenu({ openMenu, hovering, position, setHovering }) 
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className={`bg-white shadow-lg rounded-md p-6 border relative z-20 ${
               isShopMenu ? "max-w-[900px] mx-auto" : "w-auto"
-            }`} // Adjust width for Shop Mega Menu
+            }`}
           >
-            {/* Conditionally render ShopMegaMenu or default menu content */}
             {isShopMenu ? (
               <ShopMegaMenu />
             ) : (
               <motion.ul
-                key={openMenu}
+                key={delayedOpenMenu}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -65,12 +96,16 @@ export default function MegaMenu({ openMenu, hovering, position, setHovering }) 
                 }}
                 className="flex flex-col gap-5 text-gray-600"
               >
-                {menuContent[openMenu]?.map((item, index) => (
-                  <Link href={`/${openMenu}/${item.toLowerCase().replace(/ /g, "-")}`} key={index}>
+                {menuContent[delayedOpenMenu]?.map((item, index) => (
+                  <Link 
+                    href={`/${delayedOpenMenu}/${item.toLowerCase().replace(/ /g, "-")}`} 
+                    key={index}
+                    passHref
+                  >
                     <motion.li
                       variants={itemVariants}
                       transition={{ duration: 0.3, ease: "easeOut", delay: index * 0.05 }}
-                      className="border-b border-dashed pb-2 hover:border-egreen-700 hover:text-black transition-all"
+                      className="border-b border-dashed pb-2 hover:border-egreen-700 hover:text-black transition-all cursor-pointer"
                     >
                       {item}
                     </motion.li>

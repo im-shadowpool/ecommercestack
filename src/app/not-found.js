@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -14,9 +15,12 @@ export default function NotFound() {
       <p className="mt-4 text-lg text-gray-600">
         The page you are looking for does not exist.
       </p>
-      <button className="w-fit  bg-egreen-800 hover:bg-green-700 transition-links text-white py-2 px-4 rounded">
-        Brose Homepage
+      <Link href="/">
+      <button className="w-fit bg-egreen-800 hover:bg-green-700 transition-links text-white py-2 px-4 rounded">
+        Browse Homepage
       </button>
+      </Link>
+
         </div>
 
     </div>
