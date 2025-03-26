@@ -1,31 +1,27 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
-
 import { motion, AnimatePresence } from "framer-motion";
-import productsdesc from "@/product-data/productsdesc.json";
-import ReviewCreater from "./ReviewCreater";
-import Image from "next/image";
 import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart } from "lucide-react";
-import ProductImage from "./productImage";
+import ProductImage from "./ProductImage";
+import ProductDescription from "./ProductDescription";
 
 export default function ProductDetails({ productAPI }) {
   const { addToCart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
   const [selectedSize, setSelectedSize] = useState(productAPI.sizes[0]);
-  // const [selectedImage, setSelectedImage] = useState(selectedSize.images[0]);
   const [quantity, setQuantity] = useState(1);
   const [direction, setDirection] = useState(1);
-  const [activeTab, setActiveTab] = useState("Details");
   const [loading, setLoading] = useState(false);
-  const [skuSizeCode, setSkuSizeCode] = useState(productAPI.sizes[0].skuCode)
-  const [selectedSizeTitle, setSelectedSizeTitle] = useState(productAPI.sizes[0].productTitle);
+  const [skuSizeCode, setSkuSizeCode] = useState(productAPI.sizes[0].skuCode);
+  const [selectedSizeTitle, setSelectedSizeTitle] = useState(
+    productAPI.sizes[0].productTitle
+  );
   const [isWishlistAnimating, setIsWishlistAnimating] = useState(false);
-  
 
   const isWishlisted = wishlist.some((item) => item._id === productAPI._id);
 
@@ -35,14 +31,9 @@ export default function ProductDetails({ productAPI }) {
     setTimeout(() => setIsWishlistAnimating(false), 400); // Animation effect
   };
 
-
   useEffect(() => {
     setSelectedSize(productAPI.sizes[0]);
   }, [productAPI]);
-
-  const productdescription = productsdesc.find(
-    (prod) => "freshpaws-pet-shampoo" === "freshpaws-pet-shampoo"
-  );
 
   const handleAddToCart = async () => {
     setLoading(true); // Start loading
@@ -56,16 +47,16 @@ export default function ProductDetails({ productAPI }) {
     setSelectedSize(size);
     // setSelectedImage(size.images[0]);
     setQuantity(1);
-    setSkuSizeCode(size.skuCode)
-    setSelectedSizeTitle(size.productTitle)
+    setSkuSizeCode(size.skuCode);
+    setSelectedSizeTitle(size.productTitle);
     const newRewardPoints = Math.round(size.price);
-  setRewardPoints(newRewardPoints);
-  setRewardValue((newRewardPoints * 0.02).toFixed(2));
+    setRewardPoints(newRewardPoints);
+    setRewardValue((newRewardPoints * 0.02).toFixed(2));
   };
 
   const handleQuantityChange = (change) => {
-    if (quantity + change < 1) return; 
-    setDirection(isNaN(change) ? 1 : change > 0 ? 1 : -1); 
+    if (quantity + change < 1) return;
+    setDirection(isNaN(change) ? 1 : change > 0 ? 1 : -1);
 
     const newQuantity = Math.max(1, quantity + change);
     setQuantity(newQuantity);
@@ -75,10 +66,12 @@ export default function ProductDetails({ productAPI }) {
     setRewardValue((newRewardPoints * 0.02).toFixed(2));
   };
 
-
-
-  const [rewardPoints, setRewardPoints] = useState(Math.round(selectedSize.price));
-  const [rewardValue, setRewardValue] = useState((rewardPoints * 0.02).toFixed(2));
+  const [rewardPoints, setRewardPoints] = useState(
+    Math.round(selectedSize.price)
+  );
+  const [rewardValue, setRewardValue] = useState(
+    (rewardPoints * 0.02).toFixed(2)
+  );
 
   const hasMultipleSizes = productAPI.sizes.length > 1;
   const startingPrice = hasMultipleSizes ? productAPI.sizes[0].price : null;
@@ -110,11 +103,7 @@ export default function ProductDetails({ productAPI }) {
       {/* Product Wrapper */}
       <div className="py-4 mt-8 padding-container flex flex-col md:flex-row gap-8 items-center">
         {/* Product Image Wrapper */}
-        <ProductImage 
-          
-          selectedSize={selectedSize} 
-
-        />
+        <ProductImage selectedSize={selectedSize} />
 
         {/* Product Side details */}
         <div className="w-full md:min-w-[50%] flex flex-col gap-4">
@@ -131,12 +120,12 @@ export default function ProductDetails({ productAPI }) {
             {hasMultipleSizes && (
               <div className="flex gap-4">
                 <h3 className="text-egray-900 text-xl font-semibold">
-                  ${startingPrice} - ${endingPrice}
+                  ${startingPrice.toFixed(2)} - ${endingPrice.toFixed(2)}
                 </h3>
               </div>
             )}
             <h3 className="text-egreen-900 text-2xl font-bold">
-              ${selectedSize.price}
+              ${selectedSize.price.toFixed(2)}
             </h3>
             <div>
               <p className="text-egray-700 w-[85%]">{productAPI.shortDesc}</p>
@@ -272,147 +261,35 @@ export default function ProductDetails({ productAPI }) {
               </div>
               {/* Add to Favs */}
               <motion.div
-                className= {`p-2.5 w-fit h-fit rounded-full flex justify-center bg-gray-200 items-center cursor-pointer ${isWishlistAnimating ? "opacity-50" : "opacity-100"}`}
+                className={`p-2.5 w-fit h-fit rounded-full flex justify-center bg-gray-200 items-center cursor-pointer ${
+                  isWishlistAnimating ? "opacity-50" : "opacity-100"
+                }`}
                 onClick={handleWishlistClick}
-                disabled={isWishlistAnimating} 
-                whileTap={{ scale: 0.9 }} 
+                disabled={isWishlistAnimating}
+                whileTap={{ scale: 0.9 }}
                 animate={{ scale: 1.1, opacity: 1 }}
               >
-                  <motion.div
-                    key="filled"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1.1, opacity: 1 }}
-                    whileTap={{ scale: 0.9 }} 
-                    exit={{ scale: 0, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                  >
-                    <Heart fill={isWishlisted ? "#0a8b44" : "transparent"} size={18} className="align-middle text-egreen-700" />
-                  </motion.div>
+                <motion.div
+                  key="filled"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1.1, opacity: 1 }}
+                  whileTap={{ scale: 0.9 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                >
+                  <Heart
+                    fill={isWishlisted ? "#0a8b44" : "transparent"}
+                    size={18}
+                    className="align-middle text-egreen-700"
+                  />
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </div>
       </div>
-
       {/* TABS */}
-      <div className="padding-container py-8 mb-28">
-        <div className="border-b flex mb-4">
-          {["Details", "More Information", "Reviews"].map((tab) => (
-            <button
-              key={tab}
-              className={`px-4 py-2 ${
-                activeTab === tab ? "border-b-2 border-egreen-700" : ""
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-        {/* TAB CONTENT */}
-        {activeTab === "Details" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-[80%]"
-          >
-            <div className="max-w-full flex flex-col gap-4 border p-4">
-              {productdescription.details.map((item, index) => {
-                switch (item.type) {
-                  case "h2-Special":
-                    return (
-                      <h2
-                        className="text-egreen-950 text-2xl font-semibold"
-                        key={item.id || index}
-                      >
-                        {selectedSizeTitle}
-                      </h2>
-                    );
-                  case "p":
-                    return (
-                      <p className="text-egray-700" key={item.id || index}>
-                        {item.content}
-                      </p>
-                    );
-                  case "list":
-                    return (
-                      <ul
-                        key={item.id || index}
-                        className="list-disc list-inside text-egray-700 space-y-2"
-                      >
-                        {item.content.map((list, ind) => (
-                          <li className="" key={ind}>
-                            {list}
-                          </li>
-                        ))}
-                      </ul>
-                    );
-                  case "img":
-                    return (
-                      <Image
-                        key={item.id || index}
-                        src={item.src}
-                        alt={item.alt}
-                        width={560}
-                        height={315}
-                        className="object-cover"
-                      />
-                    );
-                  case "iframe":
-                    return (
-                      <iframe
-                        key={item.id || index}
-                        width="560"
-                        height="315"
-                        src={item.src}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      ></iframe>
-                    );
-                  default:
-                    return null;
-                }
-              })}
-            </div>
-          </motion.div>
-        )}
-
-        {activeTab === "More Information" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-[80%]"
-          >
-            <div className="max-w-full flex flex-col gap-4">
-              {productdescription.moreInfo.map((info, index) => (
-                <div key={index} className="p-4 border">
-                  {Object.entries(info).map(([key, value]) => (
-                    <p key={key}>
-                      <strong>{key}:</strong> {value}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {activeTab === "Reviews" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-[80%]"
-          >
-            <ReviewCreater producttitle={selectedSizeTitle} />
-          </motion.div>
-        )}
-      </div>
+      <ProductDescription selectedSizeTitle={selectedSizeTitle} />
     </div>
   );
 }

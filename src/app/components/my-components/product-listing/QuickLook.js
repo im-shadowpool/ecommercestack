@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart, Minimize2 } from "lucide-react";
+import ProductImage from "../product-single-page/ProductImage";
 
 export default function QuickLook({ product, onClose }) {
   const { addToCart } = useCart();
@@ -106,33 +107,7 @@ export default function QuickLook({ product, onClose }) {
             <Minimize2 size={22} className="" />
           </div>
           {/* Product Image Wrapper */}
-          <div className="w-full md:max-w-[50%] flex gap-4">
-            <div className="flex flex-col gap-2 justify-center items-center">
-              {selectedSize.images.map((archiveImg, idx) => (
-                <img
-                  key={idx}
-                  src={archiveImg}
-                  alt="thumbnail"
-                  className={`w-20 h-16 object-cover cursor-pointer rounded-lg border transition-all ${
-                    selectedImage === archiveImg
-                      ? "border-green-500"
-                      : "border-gray-300"
-                  }`}
-                  onClick={() => setSelectedImage(archiveImg)}
-                />
-              ))}
-            </div>
-            <div className="w-full h-[300px] md:h-[25rem] relative overflow-hidden bg-white flex justify-center flex-col">
-              <InnerImageZoom
-                src={selectedImage}
-                zoomSrc={selectedImage}
-                zoomScale={1.1}
-                zoomType="hover"
-                hideHint={true}
-                className="object-cover"
-              />
-            </div>
-          </div>
+          <ProductImage selectedSize={selectedSize} />
 
           {/* Product Side details */}
           <div className="w-full md:min-w-[50%] flex flex-col gap-4">

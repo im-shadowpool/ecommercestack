@@ -108,7 +108,7 @@ export default function ProductImage({ selectedSize }) {
       </div>
 
       {/* Main Image with Zoom + Navigation */}
-      <div className="w-full h-[400px] md:h-[500px] relative overflow-hidden bg-white flex items-center justify-center">
+      <div className="w-full h-[400px] md:h-[500px] relative overflow-hidden bg-white cursor-zoom-out flex items-center justify-center">
         {/* Arrows */}
         {selectedSize.images.length > 1 && (
   <>
