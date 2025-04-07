@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AddSize from "@/app/components/admin-components/AddSize";
+import AddSize from "@/components/admin-components/AddSize";
 
 export default function EditProductSizesPage({ params }) {
   const router = useRouter();

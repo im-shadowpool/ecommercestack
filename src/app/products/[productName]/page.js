@@ -1,4 +1,4 @@
-import ProductDetails from "@/app/components/my-components/product-single-page/ProductDetails";
+import ProductDetails from "@/components/my-components/product-single-page/ProductDetails";
 import { notFound } from "next/navigation";
 
 // Function to fetch all products (for generating static paths)

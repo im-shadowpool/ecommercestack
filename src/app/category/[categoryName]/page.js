@@ -1,4 +1,4 @@
-import ProductListing from "@/app/components/my-components/product-listing/ProductListing";
+import ProductListing from "@/components/my-components/product-listing/ProductListing";
 import { toTitleCase } from "@/lib/utils";
 import { notFound } from "next/navigation";
 

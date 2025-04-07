@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart, Minimize2 } from "lucide-react";
-import ProductImage from "@/app/components/my-components/product-single-page/ProductImage";
+import ProductImage from "@/components/ProductImage";
 
 export default function QuickLook({ product, onClose }) {
   const { addToCart } = useCart();

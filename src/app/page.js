@@ -1,9 +1,9 @@
-import Carousel from "@/app/components/my-components/home/Carousel";
-import FirstInfoSection from "@/app/components/my-components/home/FirstInfoSection";
-import HomeNewsletter from "@/app/components/my-components/home/HomeNewsletter";
-import HomeTestimonials from "@/app/components/my-components/home/HomeTestimonials";
-import SecondInfoSection from "@/app/components/my-components/home/SecondInfoSection";
-import ThirdInfoSection from "@/app/components/my-components/home/ThirdInfoSection";
+import Carousel from "@/components/my-components/home/Carousel";
+import FirstInfoSection from "@/components/my-components/home/FirstInfoSection";
+import HomeNewsletter from "@/components/my-components/home/HomeNewsletter";
+import HomeTestimonials from "@/components/my-components/home/HomeTestimonials";
+import SecondInfoSection from "@/components/my-components/home/SecondInfoSection";
+import ThirdInfoSection from "@/components/my-components/home/ThirdInfoSection";
 
 
 

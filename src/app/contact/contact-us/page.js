@@ -1,4 +1,4 @@
-import PageTitle from "@/app/components/my-components/page-title/PageTitle";
+import PageTitle from "@/components/my-components/page-title/PageTitle";
 
 export default function ContactPage() {
   return (

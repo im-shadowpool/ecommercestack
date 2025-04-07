@@ -8,7 +8,7 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart } from "lucide-react";
 import ProductDescription from "./ProductDescription";
-import ProductImage from "./ProductImage.js";
+import ProductImage from "@/components/ProductImage";
 
 export default function ProductDetails({ productAPI }) {
   const { addToCart } = useCart();

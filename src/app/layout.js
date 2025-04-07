@@ -1,11 +1,11 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/my-components/header/Header";
+import Header from "@/components/my-components/header/Header";
 import { CartProvider } from "./context/CartContext";
-import CartDrawer from "@/app/components/my-components/cart-drawer/cartDrawer";
-import Footer from "@/app/components/my-components/footer/Footer";
-import ScrollToTopButton from "@/app/components/my-components/ScrollToTopButton";
-import Layout from "@/app/components/my-components/PreLoader";
+import CartDrawer from "@/components/my-components/cart-drawer/cartDrawer";
+import Footer from "@/components/my-components/footer/Footer";
+import ScrollToTopButton from "@/components/my-components/ScrollToTopButton";
+import Layout from "@/components/my-components/PreLoader";
 import { WishlistProvider } from "./context/WishlistContext";
 import { AuthProvider } from "./context/UserContext";
 import { Toaster } from "sonner";
