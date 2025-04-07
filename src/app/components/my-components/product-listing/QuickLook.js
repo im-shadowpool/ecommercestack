@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
-import InnerImageZoom from "react-inner-image-zoom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart, Minimize2 } from "lucide-react";
-import ProductImage from "../product-single-page/ProductImage";
+import ProductImage from "@/app/components/my-components/product-single-page/ProductImage";
 
 export default function QuickLook({ product, onClose }) {
   const { addToCart } = useCart();
