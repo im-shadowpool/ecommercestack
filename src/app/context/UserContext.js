@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data.user);
 
       localStorage.setItem("maintenance-auth", "true")
-    document.cookie = "maintenance-auth=true; path=/"
+      document.cookie = "maintenance-auth=true; path=/"
 
 
       await mergeCartOnLogin(data.token); // Merge local cart
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
 
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    localStorage.removeItem("cart"); // Clear local cart
+    localStorage.removeItem("cart"); // Clear loscal cart
     setUser(null);
     window.location.href = "/";
   };

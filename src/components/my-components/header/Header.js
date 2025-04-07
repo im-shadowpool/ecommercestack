@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { IoSearchOutline } from "react-icons/io5";
-import { RxAvatar } from "react-icons/rx";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { useCart } from "@/app/context/CartContext";
