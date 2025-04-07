@@ -8,7 +8,7 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart } from "lucide-react";
 import ProductDescription from "./ProductDescription";
-import ProductImage from "@/components/ProductImage";
+import ProductImage from "@/components/my-components/ProductImage";
 
 export default function ProductDetails({ productAPI }) {
   const { addToCart } = useCart();
@@ -227,7 +227,7 @@ export default function ProductDetails({ productAPI }) {
                   className={`w-full transition-all py-2 rounded-lg text-white ${
                     loading
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-egreen-600 hover:bg-egreen-700"
+                      : "bg-egreen-700 hover:bg-egreen-800"
                   }`}
                 >
                   {loading ? (

@@ -56,11 +56,11 @@ export default function CartPage() {
     if (!user) {
       return toast.custom(
         (t) => (
-          <div className="flex items-center gap-4 shadow-lg rounded-lg px-4 py-3 border font-normal min-w-80
-            bg-gradient-to-br from-black to-egray-900 border-egray-500 text-egray-50">
-            <span className="">
-              To get started, please log in.
-            </span>
+          <div
+            className="flex items-center gap-4 shadow-lg rounded-lg px-4 py-3 border font-normal min-w-80
+            bg-gradient-to-br from-black to-egray-900 border-egray-500 text-egray-50"
+          >
+            <span className="">To get started, please log in.</span>
             <button
               onClick={() => {
                 toast.dismiss(t);
@@ -75,7 +75,7 @@ export default function CartPage() {
         { duration: 4000 }
       );
     }
-  
+
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -83,7 +83,7 @@ export default function CartPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart }),
       });
-  
+
       const data = await res.json();
       if (data.url) {
         window.location.href = data.url; // Redirect to Stripe Checkout
@@ -97,7 +97,6 @@ export default function CartPage() {
       setLoading(false);
     }
   };
-  
 
   const cartTotal = cart.reduce(
     (total, item) => total + item.selectedSize.price * item.quantity,
@@ -170,18 +169,17 @@ export default function CartPage() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="w-1/2 flex items-center gap-4">
-                  <Link href={`/products/${item.productSlug}`}>
-  <div className="w-[80px] h-[80px] overflow-hidden rounded">
-    <Image
-      src={item.selectedSize.images[0]}
-      alt={item.selectedSize.productTitle}
-      width={80}
-      height={90}
-      className="w-full h-full object-cover hover:opacity-85 transition-links"
-    />
-  </div>
-</Link>
-
+                    <Link href={`/products/${item.productSlug}`}>
+                      <div className="w-[80px] h-[80px] overflow-hidden rounded">
+                        <Image
+                          src={item.selectedSize.images[0]}
+                          alt={item.selectedSize.productTitle}
+                          width={80}
+                          height={90}
+                          className="w-full h-full object-cover hover:opacity-85 transition-links"
+                        />
+                      </div>
+                    </Link>
 
                     <div className="flex  flex-col gap-1">
                       <Link
@@ -189,7 +187,7 @@ export default function CartPage() {
                         className=" hover:text-egreen-800 cursor-pointer transition-links"
                       >
                         <p className="font-semibold">
-                          {truncateText(item.selectedSize.productTitle, 55)}
+                          {truncateText(item.selectedSize.productTitle, 48)}
                         </p>
                       </Link>
 

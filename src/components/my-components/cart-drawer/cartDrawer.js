@@ -132,7 +132,7 @@ export default function CartDrawer() {
                         <div className="flex-1 flex-col ml-3">
                         <Link href={`/products/${item.productSlug}`}>
                           <p className="font-semibold text-md hover:text-egreen-800 transition-links">
-                            {truncateText(item.selectedSize.productTitle, 60)}
+                            {truncateText(item.selectedSize.productTitle, 50)}
                           </p>
                           </Link>
                           <p className="text-gray-800 text-sm">

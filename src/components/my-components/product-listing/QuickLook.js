@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { Heart, Minimize2 } from "lucide-react";
-import ProductImage from "@/components/ProductImage";
+import ProductImage from "@/components/my-components/ProductImage";
+import Link from "next/link";
 
 export default function QuickLook({ product, onClose }) {
   const { addToCart } = useCart();
@@ -106,14 +107,16 @@ export default function QuickLook({ product, onClose }) {
             <Minimize2 size={22} className="" />
           </div>
           {/* Product Image Wrapper */}
-          <ProductImage selectedSize={selectedSize} />
+          <ProductImage selectedSize={selectedSize} ImageHeight={"430px"} />
 
           {/* Product Side details */}
           <div className="w-full md:min-w-[50%] flex flex-col gap-4">
             <div className="flex flex-col gap-4">
-              <h2 className="text-2xl font-semibold text-egray-950 pr-3">
+              <Link href={`/products/${product.slug}`}>
+              <h2 className="text-2xl font-semibold text-egray-950 pr-3 hover:text-egreen-800 transition-links">
                 {product.productTitle}
               </h2>
+              </Link>
               <p className="text-egray-700">
                 If you purchase this product you will earn{" "}
                 <strong>{rewardPoints}</strong> Points worth{" "}
@@ -121,7 +124,7 @@ export default function QuickLook({ product, onClose }) {
               </p>
 
               <h3 className="text-egreen-900 text-2xl font-bold">
-                ${selectedSize.price}
+                ${selectedSize.price.toFixed(2)}
               </h3>
               <div>
                 <p className="text-egray-700">{product.shortDesc}</p>

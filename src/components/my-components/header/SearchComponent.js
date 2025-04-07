@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IoSearchOutline, IoCloseOutline, IoEllipsisHorizontal } from 'react-icons/io5';
+import { IoSearchOutline, IoEllipsisHorizontal } from 'react-icons/io5';
 
 const SearchComponent = () => {
   const [isOpen, setIsOpen] = useState(false);

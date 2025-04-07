@@ -51,7 +51,7 @@ export default function ProductCard({
 
   const hasMultipleImages = selectedSize.images.length > 1;
   const currentImage =
-    isHovered && hasMultipleImages
+    ((view === "list") && isHovered && hasMultipleImages)
       ? selectedSize.images[1]
       : selectedSize.images[0];
 

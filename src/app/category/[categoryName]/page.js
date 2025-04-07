@@ -37,7 +37,7 @@ export default async function CategoryBySlug({params}) {
     return(
         <>
         
-        <div className="bg-white px-8">
+        <div className="bg-white">
             <div className="padding-container mx-auto py-12">
             <div className="mx-auto flex flex-col gap-2">
             <h2 className="text-3xl font-semibold text-egreen-800">
