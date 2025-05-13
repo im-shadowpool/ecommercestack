@@ -12,7 +12,7 @@ import { useAuth } from "@/app/context/UserContext";
 export default function Footer() {
   const { user } = useAuth();
 
-  if (!user) return null;
+  // if (!user) return null;
   return (
     <footer className="bg-skygreen-100 py-8">
       {/* Social Networks Section */}

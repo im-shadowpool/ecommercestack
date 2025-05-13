@@ -59,7 +59,7 @@ export default function Header() {
       setMenuPosition(rect ? rect.left : 0);
     }
   };
-  if (!user) return null
+  // if (!user) return null
   return (
     <header className="flex justify-between items-center py-3 bg-[#8ec298] relative">
       <div className="padding-container flex justify-between items-center">
