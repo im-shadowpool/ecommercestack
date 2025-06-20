@@ -36,8 +36,8 @@ async function getSingleProduct(slug) {
 // Generate static paths at build time
 export async function generateStaticParams() {
   const products = await getAllProducts();
-
-
+  
+console.log("Fetching product for slug");
   if (!products || products.length === 0) {
     return []; // Return empty array if no products exist
   }
